@@ -2,11 +2,11 @@
 " base setting.
 " --------------------------------------------------
 syntax on
+set autoindent
 set number
 set helplang=ja,en
 set shortmess+=l
 set clipboard=unnamed,autoselect
-
 " --------------------------------------------------
 " Key Binds.
 " --------------------------------------------------
@@ -42,7 +42,15 @@ if has('vim_starting')
  NeoBundle 'thinca/vim-quickrun'	" コード実行プラグイン
  NeoBundle 'junegunn/seoul256.vim'
  NeoBundle 'Shougo/unite.vim'
+ NeoBundle 'Shougo/neomru.vim'
  NeoBundle 'tpope/vim-fugitive'
+ NeoBundle 'vim-jp/autofmt'
+
+ NeoBundle 'tpope/vim-markdown'
+ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+ NeoBundle 'kannokanno/previm'
+ let g:previm_open_cmd = 'open -a Safari'
 
  call neobundle#end()
 
