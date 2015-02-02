@@ -1,7 +1,8 @@
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
- 
+
+setopt auto_cd
 # cd したら自動的にpushdする
 setopt auto_pushd
 # 重複したディレクトリを追加しない
@@ -11,19 +12,22 @@ setopt pushd_ignore_dups
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
- 
-# ヒストリの設定
+alias -g ll='ls -l'
+
+# コマンド履歴
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
  
+# 大文字と小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
  
-# emacs 風キーバインドにする
+# Emacs 風キーバインドにする
 bindkey -e
  
 # その他とりあえずいるもの
 export LANG=ja_JP.UTF-8
- 
+
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
  
@@ -37,3 +41,8 @@ setopt interactive_comments
 
 # ## Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# zsh-completions 
+if [ -e /usr/local/share/zsh-completions ]; then
+	    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
