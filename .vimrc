@@ -7,14 +7,24 @@ set number
 set helplang=ja,en
 set shortmess+=l
 set clipboard=unnamed,autoselect
+set backspace=eol,indent,start
+set incsearch
+set hlsearch
+set showmode
 " --------------------------------------------------
 " Key Binds.
 " --------------------------------------------------
+" vimrc参照
 nnoremap <space> :e ~/.vimrc <CR>
 nnoremap <space>s. :source ~/.vimrc <CR>
 
-nnoremap <space>h ^	 
-nnoremap <space>l $	 
+" help参照
+nnoremap <C-h> :<C-u>help<space>
+nnoremap <C-h><C-h> :<C-u>help<space> <C-r><C-w><Enter>
+
+noremap : ;
+noremap ; :
+
 " --------------------------------------------------
 " neobundle setting.
 " --------------------------------------------------
