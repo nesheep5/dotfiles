@@ -1,0 +1,13 @@
+autofmt
+neobundle.vim
+neocomplcache
+neomru.vim
+previm
+seoul256.vim
+syntastic
+unite.vim
+vim-fugitive
+vim-markdown
+vim-quickrun
+vim-ruby
+vimdoc-ja

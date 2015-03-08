@@ -106,8 +106,6 @@ let g:syntastic_ruby_checkers = ['rubocop']
 
 "=== vim-ruby ===
  NeoBundle 'vim-ruby/vim-ruby'
-"=== vim-scala ===
- NeoBundle 'derekwyatt/vim-scala'
 
  "=== neocomplcache ===
 NeoBundle 'Shougo/neocomplcache'
@@ -120,6 +118,9 @@ let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" 起動時エラー回避
+let g:neocomplcache_force_overwrite_completefunc=1
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {

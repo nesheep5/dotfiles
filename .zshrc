@@ -24,8 +24,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
  
 # Emacs 風キーバインドにする
 bindkey -e
- 
-# その他とりあえずいるもの
+
+# 文字コード
 export LANG=ja_JP.UTF-8
 
 # 日本語ファイル名を表示可能にする
@@ -46,3 +46,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [ -e /usr/local/share/zsh-completions ]; then
 	    fpath=(/usr/local/share/zsh-completions $fpath)
 fi
+
+
