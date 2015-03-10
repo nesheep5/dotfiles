@@ -13,6 +13,7 @@ setopt pushd_ignore_dups
 alias -g L='| less'
 alias -g G='| grep'
 alias -g ll='ls -l'
+alias -g la='ls -la'
 
 # コマンド履歴
 HISTFILE=~/.zsh_history
