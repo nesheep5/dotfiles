@@ -1,1 +1,0 @@
-/Users/WatanabeShogo/dotfiles/.vim
