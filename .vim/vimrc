@@ -1,4 +1,4 @@
-" --------------------------------------------------
+"--------------------------------------------------
 " base setting.
 " --------------------------------------------------
 syntax on
@@ -103,6 +103,12 @@ let g:previm_open_cmd = 'open -a Safari'
 " --------------------------
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+" --------------------------
+" RSence
+" --------------------------
+let g:rsenseHome = expand("~/.vim/bundle/rsense")
+let g:rsenseUseOmniFunc = 1
+
 " --------------------------------
 " neocomplete.vim
 " --------------------------------
@@ -113,6 +119,12 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+" --------------------------
+" neocomplete-rsence
+" --------------------------
+let g:neocomplete#sources#rsense#home_directory = expand("~/.vim/bundle/rsense")
+
 " --------------------------
 " unite
 " --------------------------
@@ -140,11 +152,6 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q 
 
-" --------------------------
-" RSence
-" --------------------------
-let g:rsenseHome = '/usr/local/Cellar/rsense/0.3/libexec'
-let g:rsenseUseOmniFunc = 1
 
 " Required:
 filetype plugin indent on
