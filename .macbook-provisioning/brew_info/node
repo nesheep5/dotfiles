@@ -1,0 +1,34 @@
+node: stable 0.12.0 (bottled), HEAD
+https://nodejs.org/
+/usr/local/Cellar/node/0.10.35_2 (2146 files,  22M)
+  Poured from bottle
+/usr/local/Cellar/node/0.10.36 (2157 files,  22M)
+  Poured from bottle
+/usr/local/Cellar/node/0.12.0 (2196 files,  25M)
+  Poured from bottle
+/usr/local/Cellar/node/0.12.0_1 (2244 files,  26M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/node.rb
+==> Dependencies
+Build: pkg-config ✔
+Optional: openssl ✔, icu4c ✘
+==> Options
+--with-debug
+	Build with debugger hooks
+--with-icu4c
+	Build with icu4c support
+--with-openssl
+	Build with openssl support
+--without-completion
+	npm bash completion will not be installed
+--without-npm
+	npm will not be installed
+--HEAD
+	Install HEAD version
+==> Caveats
+If you update npm itself, do NOT use the npm update command.
+The upstream-recommended way to update npm is:
+  npm install -g npm@latest
+
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d

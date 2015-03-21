@@ -1,0 +1,9 @@
+ansible: stable 1.8.4 (bottled), HEAD
+http://www.ansible.com/home
+/usr/local/Cellar/ansible/1.8.4 (1481 files,  17M)
+  Poured from bottle
+/usr/local/Cellar/ansible/1.8.4_1 (1324 files,  15M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/ansible.rb
+==> Dependencies
+Required: libyaml ✔
