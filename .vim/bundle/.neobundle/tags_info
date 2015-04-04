@@ -5,6 +5,7 @@ neocomplete.vim
 neomru.vim
 previm
 rsense
+ruby-matchit
 seoul256.vim
 syntastic
 unite.vim
