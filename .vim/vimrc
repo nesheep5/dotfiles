@@ -1,3 +1,5 @@
+set encoding=utf-8
+scriptencoding utf-8
 "--------------------------------------------------
 " base setting.
 " --------------------------------------------------
@@ -14,7 +16,6 @@ set clipboard=unnamed,autoselect
 set backspace=eol,indent,start
 set incsearch
 set hlsearch
-set encoding=utf-8
 set fileformats=unix,dos,mac
 " --------------------------------------------------
 " Key Binds.
