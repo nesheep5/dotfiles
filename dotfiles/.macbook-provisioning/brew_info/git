@@ -1,0 +1,42 @@
+git: stable 2.3.3 (bottled), HEAD
+http://git-scm.com
+/usr/local/Cellar/git/2.2.2 (1357 files,  31M)
+  Poured from bottle
+/usr/local/Cellar/git/2.3.2 (1360 files,  31M)
+  Poured from bottle
+/usr/local/Cellar/git/2.3.3 (1361 files,  31M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/git.rb
+==> Dependencies
+Optional: pcre ✔, gettext ✘
+==> Options
+--with-blk-sha1
+	Compile with the block-optimized SHA1 implementation
+--with-brewed-curl
+	Use Homebrew's version of cURL library
+--with-brewed-openssl
+	Build with Homebrew OpenSSL instead of the system version
+--with-brewed-svn
+	Use Homebrew's version of SVN
+--with-gettext
+	Build with gettext support
+--with-pcre
+	Build with pcre support
+--with-persistent-https
+	Build git-remote-persistent-https from 'contrib' directory
+--without-completions
+	Disable bash/zsh completions from 'contrib' directory
+--HEAD
+	Install HEAD version
+==> Caveats
+The OS X keychain credential helper has been installed to:
+  /usr/local/bin/git-credential-osxkeychain
+
+The "contrib" directory has been installed to:
+  /usr/local/share/git-core/contrib
+
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+
+zsh completion has been installed to:
+  /usr/local/share/zsh/site-functions

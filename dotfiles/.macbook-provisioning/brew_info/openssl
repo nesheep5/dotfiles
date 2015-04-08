@@ -1,0 +1,28 @@
+openssl: stable 1.0.2a-1 (bottled)
+https://openssl.org
+
+This formula is keg-only.
+Mac OS X already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+Apple has deprecated use of OpenSSL in favor of its own TLS and crypto libraries
+
+/usr/local/Cellar/openssl/1.0.2 (459 files,  18M)
+  Poured from bottle
+/usr/local/Cellar/openssl/1.0.2a-1 (463 files,  18M)
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/openssl.rb
+==> Dependencies
+Build: makedepend ✘
+==> Options
+--universal
+	Build a universal binary
+--without-check
+	Skip build-time tests (not recommended)
+==> Caveats
+A CA file has been bootstrapped using certificates from the system
+keychain. To add additional certificates, place .pem files in
+  /usr/local/etc/openssl/certs
+
+and run
+  /usr/local/opt/openssl/bin/c_rehash
