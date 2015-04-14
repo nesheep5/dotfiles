@@ -72,6 +72,7 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'basyura/unite-rails'
 NeoBundle 'ruby-matchit'
 " ドキュメント参照
 NeoBundle 'thinca/vim-ref'
@@ -84,6 +85,16 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'marcus/rsense'
 NeoBundle 'supermomonga/neocomplete-rsense.vim'
+
+NeoBundle 'Shougo/vimproc.vim', {
+      \   'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \   }
+      \ }
 
 call neobundle#end()
 
