@@ -7,6 +7,7 @@ previm
 rsense
 ruby-matchit
 seoul256.vim
+surround.vim
 syntastic
 unite-rails
 unite.vim
