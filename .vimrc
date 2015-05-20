@@ -3,7 +3,6 @@ scriptencoding utf-8
 "--------------------------------------------------
 " base setting.
 " --------------------------------------------------
-syntax on
 set autoindent
 set smartindent
 set tabstop=2
@@ -17,12 +16,28 @@ set backspace=eol,indent,start
 set incsearch
 set hlsearch
 set fileformats=unix,dos,mac
+" スクロールを開始する行数
+set scrolloff=3
+" カーソルが何行目の何列目に置かれているかを表示する。（有効:ruler/無効:noruler）
+set ruler
+" 最下ウィンドウにいつステータス行が表示されるかを設定する。
+"               0: 全く表示しない
+"               1: ウィンドウの数が2以上のときのみ表示
+"               2: 常に表示
+set laststatus=2
+" コマンド (の一部) を画面の最下行に表示する。（有効:showcmd/無効:noshowcmd）
+set showcmd
+" カレントディレクトリを自動変更
+set autochdir
+syntax on
 " --------------------------------------------------
 " Key Binds.
 " --------------------------------------------------
 " vimrc参照
-nnoremap <space>. :<C-u>e ~/.vimrc <CR>
-nnoremap <space>s. :<C-u>source ~/.vimrc <CR>
+nnoremap <space>. :<C-u>e $MYVIMRC <CR>
+nnoremap <space>s. :<C-u>source $MYVIMRC <CR>
+nnoremap <space>g :<C-u>e $MYGVIMRC <CR>
+nnoremap <space>sg :<C-u>source $MYGVIMRC <CR>
 
 " help参照
 nnoremap <C-h> :<C-u>help<space>
@@ -34,8 +49,17 @@ noremap ; :
 nnoremap <space>h 0
 nnoremap <space>l $
 
-inoremap <C-j> <esc>
+" insertモードから抜ける
+inoremap <silent> jj <ESC>
 
+" 挿入モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" 新規タブ作成
+" " nnoremap <C-t> :<C-u>tabnew <CR>
 
 " --------------------------------------------------
 " neobundle setting.
@@ -70,11 +94,19 @@ NeoBundle 'vim-jp/autofmt'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'surround.vim'
+" カラースキーマ
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle '29decibel/codeschool-vim-theme'
+NeoBundle 'jpo/vim-railscasts-theme'
+" 開発共通
+NeoBundle 'tomtom/tcomment_vim'
+
+" Ruby/Rails関連
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ruby-matchit'
-NeoBundle 'surround.vim'
+
 " ドキュメント参照
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'yuku-t/vim-ref-ri'
@@ -172,7 +204,10 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q 
 
-
+" --------------------------
+" unite-rails 
+" --------------------------
+nnoremap <silent> <space>r :<C-u>Unite rails/
 " --------------------------
 " Required:
 filetype plugin indent on
