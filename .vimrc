@@ -1,6 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
-"--------------------------------------------------
+" --------------------------------------------------
 " base setting.
 " --------------------------------------------------
 set autoindent
@@ -10,42 +10,42 @@ set shiftwidth=2
 set expandtab
 set number
 set helplang=ja,en
-set shortmess+=l
+set shortmess+=I
 set clipboard=unnamed,autoselect
 set backspace=eol,indent,start
 set incsearch
 set hlsearch
 set fileformats=unix,dos,mac
+
 " スクロールを開始する行数
 set scrolloff=3
-" カーソルが何行目の何列目に置かれているかを表示する。（有効:ruler/無効:noruler）
+" カーソル位置表示
 set ruler
-" 最下ウィンドウにいつステータス行が表示されるかを設定する。
-"               0: 全く表示しない
-"               1: ウィンドウの数が2以上のときのみ表示
-"               2: 常に表示
+" ステータスバー表示 0:常に非表示 1:複数ウィンドウの時表示 2:常に表示 
 set laststatus=2
-" コマンド (の一部) を画面の最下行に表示する。（有効:showcmd/無効:noshowcmd）
+" コマンド表示
 set showcmd
 " カレントディレクトリを自動変更
 set autochdir
-syntax on
+
 " --------------------------------------------------
 " Key Binds.
 " --------------------------------------------------
 " vimrc参照
-nnoremap <space>. :<C-u>e $MYVIMRC <CR>
+nnoremap <space>.  :<C-u>tabnew $MYVIMRC <CR>
 nnoremap <space>s. :<C-u>source $MYVIMRC <CR>
-nnoremap <space>g :<C-u>e $MYGVIMRC <CR>
+nnoremap <space>g  :<C-u>tabnew $MYGVIMRC <CR>
 nnoremap <space>sg :<C-u>source $MYGVIMRC <CR>
 
 " help参照
-nnoremap <C-h> :<C-u>help<space>
+nnoremap <C-h>      :<C-u>help<space>
 nnoremap <C-h><C-h> :<C-u>help<space> <C-r><C-w><Enter>
 
+" コロン・セミコロン入替(ホームポジションでコマンド入力するため)
 noremap : ;
 noremap ; :
 
+" 行頭・行末移動
 nnoremap <space>h 0
 nnoremap <space>l $
 
@@ -60,6 +60,9 @@ inoremap <C-l> <Right>
 
 " 新規タブ作成
 " " nnoremap <C-t> :<C-u>tabnew <CR>
+"タブ切り替え
+noremap <C-Tab>   :<C-u>tabnext<CR>
+noremap <C-S-Tab> :<C-u>tabprevious<CR>
 
 " --------------------------------------------------
 " neobundle setting.
@@ -101,6 +104,7 @@ NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'jpo/vim-railscasts-theme'
 " 開発共通
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'Yggdroot/indentLine'
 
 " Ruby/Rails関連
 NeoBundle 'vim-ruby/vim-ruby'
@@ -208,6 +212,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " unite-rails 
 " --------------------------
 nnoremap <silent> <space>r :<C-u>Unite rails/
+
 " --------------------------
 " Required:
 filetype plugin indent on
@@ -220,4 +225,6 @@ if !has('vim_starting')
   " .vimrcを読み込み直した時のための設定
   call neobundle#call_hook('on_source')
 endif
+
+syntax on
 
