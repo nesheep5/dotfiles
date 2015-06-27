@@ -26,7 +26,8 @@ set laststatus=2
 " コマンド表示
 set showcmd
 " カレントディレクトリを自動変更
-set autochdir
+" set autochdir
+ set noautochdir
 
 " --------------------------------------------------
 " Key Binds.
@@ -89,8 +90,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-jp/vimdoc-ja'		" ヘルプ日本語化
 NeoBundle 'thinca/vim-quickrun'	" コード実行プラグイン
-NeoBundle 'junegunn/seoul256.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'vim-jp/autofmt'
@@ -98,16 +99,21 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'surround.vim'
+
 " カラースキーマ
+NeoBundle 'junegunn/seoul256.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle '29decibel/codeschool-vim-theme'
 NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+
 " 開発共通
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'Yggdroot/indentLine'
 
 " Ruby/Rails関連
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ruby-matchit'
 
@@ -136,7 +142,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 call neobundle#end()
 
 " --------------------------
-"vim-tags 
+" vim-tags 
 " --------------------------
 let g:vim_tags_project_tags_command = "/usr/local/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
 let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
