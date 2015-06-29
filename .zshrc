@@ -1,35 +1,28 @@
-# 補完機能を有効にする
-autoload -Uz compinit
-compinit
+# --------------------------------------------------
+# base setting.
+# --------------------------------------------------
+# 文字コード
+export LANG=ja_JP.UTF-8
+# '#' 以降をコメントとして扱う
+setopt interactive_comments
 
+# cdコマンド省略
 setopt auto_cd
+# よく使うディレクトリパスを設定
+cdpath=(.. ~ ~/Documents/develop ~/Documents/workspace)
 # cd したら自動的にpushdする
 setopt auto_pushd
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
  
- 
-# グローバルエイリアス
-alias -g L='| less'
-alias -g G='| grep'
-alias -g ll='ls -l'
-alias -g la='ls -la'
-alias -g dev='cd ~/Documents/develop && ll'
-
-
 # コマンド履歴
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
  
-# 大文字と小文字を区別しない
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
  
 # Emacs 風キーバインドにする
 bindkey -e
-
-# 文字コード
-export LANG=ja_JP.UTF-8
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
@@ -37,22 +30,68 @@ setopt print_eight_bit
 # フローコントロールを無効にする
 setopt no_flow_control
  
-# '#' 以降をコメントとして扱う
-setopt interactive_comments
- 
 # vim:set ft=zsh :
 
 # ## Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# zsh-completions 
-if [ -e /usr/local/share/zsh-completions ]; then
-	    fpath=(/usr/local/share/zsh-completions $fpath)
-fi
+# --------------------------------------------------
+# plugin
+# --------------------------------------------------
+# zsh-completions(補完機能強化)
+  if [ -e /usr/local/share/zsh-completions ]; then
+        fpath=(/usr/local/share/zsh-completions $fpath)
+  fi
+  # 大文字と小文字を区別しない
+  zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+  # 補完機能を有効にする ※zsh-completionsより後に記述すること
+  autoload -Uz compinit
+  compinit
 
-#
-# 色
-#
+# cdr(ディレクトリ移動履歴)
+  autoload -Uz add-zsh-hook
+  autoload -Uz chpwd_recent_dirs cdr
+  add-zsh-hook chpwd chpwd_recent_dirs
+
+# vcs_info(gitリポジトリ表示)
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:git:*' check-for-changes true
+  zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+  zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+  zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'
+  zstyle ':vcs_info:*' actionformats '[%b|%a]' 
+  function _update_vcs_info_msg() {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    RPROMPT="${vcs_info_msg_0_}"
+  }
+  add-zsh-hook precmd _update_vcs_info_msg
+
+# --------------------------------------------------
+# alias
+# --------------------------------------------------
+alias -g L='| less'
+alias -g G='| grep'
+
+# ls系
+alias -g ll='ls -l'
+alias -g la='ls -la'
+
+# よく利用するディレクトリ
+alias -g dev='cd ~/Documents/develop && ll'
+alias -g dot='cd ~/dotfiles && la'
+
+# macvimタブ表示
+alias -g mvi='mvim --remote-tab-silent'
+
+#=================
+# プラグイン
+#=================
+
+#=================
+# 色設定
+#=================
 autoload colors
 colors
 
