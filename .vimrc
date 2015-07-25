@@ -117,6 +117,9 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'ruby-matchit'
 
+" scala関連
+NeoBundle 'derekwyatt/vim-scala'
+
 " ドキュメント参照
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'yuku-t/vim-ref-ri'
