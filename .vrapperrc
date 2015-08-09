@@ -1,0 +1,55 @@
+set encoding=utf-8
+scriptencoding utf-8
+" --------------------------------------------------
+" base setting.
+" --------------------------------------------------
+set autoindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set number
+set helplang=ja,en
+set shortmess+=I
+set clipboard=unnamed,autoselect
+set backspace=eol,indent,start
+set incsearch
+set hlsearch
+set fileformats=unix,dos,mac
+
+" スクロールを開始する行数
+set scrolloff=3
+" カーソル位置表示
+set ruler
+" ステータスバー表示 0:常に非表示 1:複数ウィンドウの時表示 2:常に表示 
+set laststatus=2
+" コマンド表示
+set showcmd
+" カレントディレクトリを自動変更
+" set autochdir
+ set noautochdir
+
+" --------------------------------------------------
+" Key Binds.
+" --------------------------------------------------
+" vimrc参照
+nnoremap <space>.  :<C-u>tabnew $MYVIMRC <CR>
+nnoremap <space>s. :<C-u>source $MYVIMRC <CR>
+nnoremap <space>g  :<C-u>tabnew $MYGVIMRC <CR>
+nnoremap <space>sg :<C-u>source $MYGVIMRC <CR>
+
+" help参照
+nnoremap <C-h>      :<C-u>help<space>
+nnoremap <C-h><C-h> :<C-u>help<space> <C-r><C-w><Enter>
+
+" コロン・セミコロン入替(ホームポジションでコマンド入力するため)
+noremap : ;
+noremap ; :
+
+" 行頭・行末移動
+nnoremap <space>h 0
+nnoremap <space>l $
+
+" insertモードから抜ける
+inoremap jj <ESC>
+inoremap kk <ESC>
