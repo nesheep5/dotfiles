@@ -9,7 +9,7 @@ setopt interactive_comments
 # cdコマンド省略
 setopt auto_cd
 # よく使うディレクトリパスを設定
-cdpath=(.. ~ ~/Documents/develop ~/Documents/workspace)
+cdpath=(..  ~/Documents/develop ~/Documents/workspace)
 # cd したら自動的にpushdする
 setopt auto_pushd
 # 重複したディレクトリを追加しない
