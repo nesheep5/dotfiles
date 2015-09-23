@@ -30,7 +30,13 @@ set showcmd
  set noautochdir
 " カーソルの回り込み
 set whichwrap=b,s,h,l,<,>,[,],~
+" insertモードを抜けるとIMEオフ
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+inoremap :set iminsert=0　
 " --------------------------------------------------
+"
 " Key Binds.
 " --------------------------------------------------
 " vimrc参照
@@ -53,6 +59,7 @@ nnoremap <space>l $
 
 " insertモードから抜ける
 inoremap <silent> jj <ESC>
+inoremap <silent> っj <ESC>
 
 " 挿入モードでのカーソル移動
 inoremap <C-j> <Down>
