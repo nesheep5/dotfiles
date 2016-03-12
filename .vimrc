@@ -107,6 +107,7 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'surround.vim'
+NeoBundle 'scrooloose/nerdtree'
 
 " カラースキーマ
 NeoBundle 'junegunn/seoul256.vim'
