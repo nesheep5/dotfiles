@@ -139,7 +139,6 @@ NeoBundle 'tpope/vim-endwise'
 " コード補完
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'marcus/rsense'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
       \   'build' : {
