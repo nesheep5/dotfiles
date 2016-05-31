@@ -11,6 +11,7 @@
 	excludesfile = /Users/shogo.watanabe/.gitignore_global
 	autocrlf = input
 	quotepath = false
+	attributesfile = /Users/shogo.watanabe/.gitattributes
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
