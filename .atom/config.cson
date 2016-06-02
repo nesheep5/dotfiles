@@ -1,0 +1,13 @@
+"*":
+  core: {}
+  editor:
+    fontSize: 12
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "892c03f8-aa4d-3c2d-5830-152ec60706d5"
+  "highlight-line":
+    enableBackgroundColor: false
+  welcome:
+    showOnStartup: false
