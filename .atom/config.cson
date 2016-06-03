@@ -1,5 +1,8 @@
 "*":
-  core: {}
+  core:
+    disabledPackages: [
+      "vim-mode"
+    ]
   editor:
     fontSize: 12
     invisibles: {}

@@ -1,6 +1,9 @@
-blob-store
+storage/
+packages/
 compile-cache
 dev
-storage
-.node-gyp
+projects.cson
+.apm
 .npm
+.node-gyp
+
