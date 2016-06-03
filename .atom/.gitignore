@@ -1,5 +1,6 @@
 storage/
 packages/
+blob-store
 compile-cache
 dev
 projects.cson
