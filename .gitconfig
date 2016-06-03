@@ -3,8 +3,8 @@
 	clean = git media clean %f
 	smudge = git media smudge %f
 [user]
-	name = shogo.watanabe
-	email = shogo.watanabe@dena.com
+	name =
+	email =
 [credential]
 	helper = osxkeychain
 [core]
