@@ -12,6 +12,7 @@
 	autocrlf = input
 	quotepath = false
 	attributesfile = /Users/shogo.watanabe/.gitattributes
+	editor = vim -c \"set fenc=utf-8\"
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
