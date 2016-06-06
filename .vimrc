@@ -129,6 +129,9 @@ NeoBundle 'ruby-matchit'
 " scala関連
 NeoBundle 'derekwyatt/vim-scala'
 
+" Gradle関連
+NeoBundle 'tfnico/vim-gradle'
+
 " ドキュメント参照
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'yuku-t/vim-ref-ri'
