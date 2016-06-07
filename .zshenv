@@ -4,3 +4,4 @@ if [ -d ${HOME}/.rbenv  ] ; then
 fi
 
 export GOPATH=$HOME/.go
+export JAVA_HOME=/Library/Java/Home
