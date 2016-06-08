@@ -118,3 +118,6 @@ linux*)
   alias ls='ls -F --color'
   ;;
 esac
+
+# docker quickstartが起動しない問題の一時的なパッチ
+alias dockup="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
