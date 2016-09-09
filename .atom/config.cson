@@ -2,10 +2,15 @@
   core:
     disabledPackages: [
       "vim-mode"
+      "markdown-toolbar"
+      "markdown-preview-opener"
+      "tidy-markdown"
     ]
   editor:
+    fontFamily: "\"Migu 2M\""
     fontSize: 12
     invisibles: {}
+    preferredLineLength: 150
     showIndentGuide: true
     showInvisibles: true
   "exception-reporting":
@@ -14,3 +19,5 @@
     enableBackgroundColor: false
   welcome:
     showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false

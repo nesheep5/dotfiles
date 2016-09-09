@@ -16,6 +16,8 @@ set backspace=eol,indent,start
 set incsearch
 set hlsearch
 set fileformats=unix,dos,mac
+" インサートモードから抜ける際に自動でIMEをOFFにする
+set imd
 
 " スクロールを開始する行数
 set scrolloff=3
@@ -51,7 +53,7 @@ nnoremap <space>h 0
 nnoremap <space>l $
 
 " insertモードから抜ける
-inoremap jj <ESC><ESC>
+inoremap jj <ESC>
 inoremap kk <ESC>
 
 nnoremap mj :AddJavaDocComment<CR>
