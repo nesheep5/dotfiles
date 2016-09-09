@@ -44,10 +44,14 @@ nnoremap <space>.  :<C-u>tabnew $MYVIMRC <CR>
 nnoremap <space>s. :<C-u>source $MYVIMRC <CR>
 nnoremap <space>g  :<C-u>tabnew $MYGVIMRC <CR>
 nnoremap <space>sg :<C-u>source $MYGVIMRC <CR>
+" emacs風キーバインド 
+noremap <C-h> <BS>
+noremap <C-e> $
+noremap <C-a> 0
 
-" help参照
-nnoremap <C-h>      :<C-u>help<space>
-nnoremap <C-h><C-h> :<C-u>help<space> <C-r><C-w><Enter>
+"help参照
+"nnoremap <C-h>      :<C-u>help<space>
+"nnoremap <C-h><C-h> :<C-u>help<space> <C-r><C-w><Enter>
 
 " コロン・セミコロン入替(ホームポジションでコマンド入力するため)
 noremap : ;
@@ -62,10 +66,10 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
 " 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
 
 " 新規タブ作成
 " " nnoremap <C-t> :<C-u>tabnew <CR>
