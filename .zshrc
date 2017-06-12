@@ -9,27 +9,27 @@ setopt interactive_comments
 # cdコマンド省略
 setopt auto_cd
 # よく使うディレクトリパスを設定
-cdpath=(..  ~/Documents/develop ~/Documents/workspace)
+#cdpath=(..  ~/Documents/develop ~/Documents/workspace)
 # cd したら自動的にpushdする
 setopt auto_pushd
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
- 
+
 # コマンド履歴
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
- 
- 
+
+
 # Emacs 風キーバインドにする
 bindkey -e
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
- 
+
 # フローコントロールを無効にする
 setopt no_flow_control
- 
+
 # vim:set ft=zsh :
 
 # ## Added by the Heroku Toolbelt
@@ -60,7 +60,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
   zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
   zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
   zstyle ':vcs_info:*' formats '%F{green}%c%u[%b]%f'
-  zstyle ':vcs_info:*' actionformats '[%b|%a]' 
+  zstyle ':vcs_info:*' actionformats '[%b|%a]'
   function _update_vcs_info_msg() {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
@@ -119,5 +119,21 @@ linux*)
   ;;
 esac
 
+#=================
+# PATH
+#=================
+# Go
+export GOPATH=$HOME/.go
+# Jaca
+export JAVA_HOME=`/usr/libexec/java_home`
+# Python
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="${PYENV_ROOT}/bin:$PATH"
+eval "$(pyenv init -)"
+export CPLUS_INCLUDE_PATH=/Users/shogo.watanabe/.pyenv/shims/python
+# oracle
+export ORACLE_HOME=$HOME/oracle
+export SQLPATH=$ORACLE_HOME/instantclient_12_1/
+export PATH="$HOME/.rbenv/bin:$PATH:$SQLPATH"
 # docker quickstartが起動しない問題の一時的なパッチ
 alias dockup="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
