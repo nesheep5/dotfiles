@@ -124,7 +124,7 @@ esac
 #=================
 # Go
 export GOPATH=$HOME/.go
-# Jaca
+# Java
 export JAVA_HOME=`/usr/libexec/java_home`
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
@@ -137,3 +137,10 @@ export SQLPATH=$ORACLE_HOME/instantclient_12_1/
 export PATH="$HOME/.rbenv/bin:$PATH:$SQLPATH"
 # docker quickstartが起動しない問題の一時的なパッチ
 alias dockup="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Ruby
+export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
