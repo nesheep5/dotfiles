@@ -35,6 +35,7 @@
 [user]
 	username = nesheep5
 	name = Shogo Watanabe
-	email = shogo.watanabe@dena.com
+	email = shogo.mizuno@dena.com
+	name = shogo mizuno
 [commit]
 	template = /Users/shogo.watanabe/.stCommitMsg
