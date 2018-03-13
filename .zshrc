@@ -78,13 +78,6 @@ alias -g G='| grep'
 alias -g ll='ls -l'
 alias -g la='ls -la'
 
-# よく利用するディレクトリ
-alias -g dev='cd ~/Documents/develop && ll'
-alias -g dot='cd ~/dotfiles && la'
-
-# macvimタブ表示
-alias -g mvi='mvim --remote-tab-silent'
-
 #=================
 # プラグイン
 #=================
