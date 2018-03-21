@@ -8,7 +8,7 @@
 	excludesfile = /Users/shogo.mizuno/.gitignore_global
 	autocrlf = input
 	quotepath = false
-	attributesfile = /Users/shogo.watanabe/.gitattributes
+	attributesfile = /Users/shogo.mizuno/.gitattributes
 	editor = /usr/bin/vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -31,11 +31,4 @@
     binary = true
     textconv = $GOPATH/bin/git-xlsx-textconv
 [include]
-      path = .gitconfig.local
-[user]
-	username = nesheep5
-	name = Shogo Watanabe
-	email = shogo.mizuno@dena.com
-	name = shogo mizuno
-[commit]
-	template = /Users/shogo.watanabe/.stCommitMsg
+    path = .gitconfig.local
