@@ -5,16 +5,16 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = /Users/shogo.watanabe/.gitignore_global
+	excludesfile = /Users/shogo.mizuno/.gitignore_global
 	autocrlf = input
 	quotepath = false
 	attributesfile = /Users/shogo.watanabe/.gitattributes
-	editor = vim -c \"set fenc=utf-8\"
+	editor = /usr/bin/vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [color]
 	ui = auto
@@ -32,3 +32,10 @@
     textconv = $GOPATH/bin/git-xlsx-textconv
 [include]
       path = .gitconfig.local
+[user]
+	username = nesheep5
+	name = Shogo Watanabe
+	email = shogo.mizuno@dena.com
+	name = shogo mizuno
+[commit]
+	template = /Users/shogo.watanabe/.stCommitMsg

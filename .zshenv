@@ -3,5 +3,4 @@ if [ -d ${HOME}/.rbenv  ] ; then
     eval "$(rbenv init -)"
 fi
 
-export GOPATH=$HOME/.go
-export JAVA_HOME=/Library/Java/Home
+
