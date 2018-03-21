@@ -110,4 +110,15 @@ linux*)
   ;;
 esac
 
+# git config
+function gitconfig_parsonal(){
+  git config --local --replace-all user.name shogo.mizuno
+  git config --local --replace-all user.email ne.sheep.5mouths@gmail.com
+}
+function gitconfig_work(){
+  git config --local --replace-all user.name shogo.mizuno 
+  git config --local --replace-all user.email shogo.mizuno@dena.com 
+}
+
+# local file 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
