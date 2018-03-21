@@ -114,10 +114,12 @@ esac
 function gitconfig_parsonal(){
   git config --local --replace-all user.name shogo.mizuno
   git config --local --replace-all user.email ne.sheep.5mouths@gmail.com
+  git config -l
 }
 function gitconfig_work(){
   git config --local --replace-all user.name shogo.mizuno 
   git config --local --replace-all user.email shogo.mizuno@dena.com 
+  git config -l
 }
 
 # local file 
