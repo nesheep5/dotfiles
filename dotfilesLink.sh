@@ -1,5 +1,4 @@
 #! /bin/bash
-ln -fs ~/dotfiles/.atom ~/.atom
 ln -fs ~/dotfiles/.gitattributes ~/.gitattributes
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.gitignore_global ~/.gitignore_global
