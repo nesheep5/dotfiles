@@ -34,12 +34,25 @@ setopt no_flow_control
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # --------------------------------------------------
+# alias
+# --------------------------------------------------
+alias -g L='| less'
+alias -g G='| grep'
+
+# ls系
+alias -g ll='ls -l'
+alias -g la='ls -la'
+
+alias -g zr='vim ~/.zshrc'
+alias -g rld='source ~/.zshrc'
+# --------------------------------------------------
 # plugin
 # --------------------------------------------------
+source ~/.zplug/init.zsh
 # zsh-completions(補完機能強化)
-  if [ -e /usr/local/share/zsh-completions ]; then
-        fpath=(/usr/local/share/zsh-completions $fpath)
-  fi
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+
   # 大文字と小文字を区別しない
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
   # 補完機能を有効にする ※zsh-completionsより後に記述すること
@@ -66,15 +79,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
   }
   add-zsh-hook precmd _update_vcs_info_msg
 
-# --------------------------------------------------
-# alias
-# --------------------------------------------------
-alias -g L='| less'
-alias -g G='| grep'
-
-# ls系
-alias -g ll='ls -l'
-alias -g la='ls -la'
 
 #=================
 # プラグイン
