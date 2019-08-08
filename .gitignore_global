@@ -1,23 +1,6 @@
 *~
-*.swp
-.netrwhist
 .DS_Store
 
-#java
-*.class
-*.jar
-*.war
-*.ear
-
-# Eclipse
-.project
-.classpath
-.settings
-*.pref
-
-# OS
-Thumbs.db
-.DS_Store
-
-# Maven
-target
+# ctags
+tags
+.tags
