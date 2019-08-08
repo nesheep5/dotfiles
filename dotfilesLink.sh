@@ -1,10 +1,6 @@
 #! /bin/bash
-ln -fs ~/dotfiles/.gitattributes ~/.gitattributes
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.gitignore_global ~/.gitignore_global
-ln -fs ~/dotfiles/.vim ~/.vim
-ln -fs ~/dotfiles/.vimrc ~/.vimrc
-ln -fs ~/dotfiles/.vrapperrc ~/.vrapperrc
-ln -fs ~/dotfiles/.gvimrc ~/.gvimrc
-ln -fs ~/dotfiles/.zshenv ~/.zshenv
-ln -fs ~/dotfiles/.zshrc ~/.zshrc
+ln -fs ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+ln -fs ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -fs ~/dotfiles/fish/fishfile ~/.config/fish/fishfile
