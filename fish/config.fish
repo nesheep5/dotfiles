@@ -6,7 +6,7 @@ set -x HISTCONTROL ignoreboth
 set -x PATH  /usr/local/opt/grep/libexec/gnubin $PATH
 
 # alias ++++++++++++++++++++++++++++++++++++++++++++++++++
-balias vim 'nvim'
+alias vim="nvim"
 balias vc 'vim ~/.config/nvim/init.vim'
 balias fc 'vim ~/.config/fish/config.fish'
 balias gl 'ghq look (ghq list | fzf)'
