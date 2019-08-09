@@ -3,6 +3,7 @@
 " ===========================================================================
 set noswapfile
 set clipboard+=unnamed
+set tags=.tags
 
 " ===========================================================================
 "  Common Visual setting
@@ -118,9 +119,7 @@ let g:go_auto_sameids = 1
 "  for Defx
 " ---------------------------------------------------------------------------
 nnoremap <C-e> :Defx<CR>
-nnoremap <C-e><C-e> :Defx -split=vertical -winwidth=50 -direction=topleft<CR>
 nnoremap <C-f> :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-nnoremap <C-f><C-f> :Defx `expand('%:p:h')` -search=`expand('%:p')` -split=vertical -winwidth=50 -direction=topleft<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
