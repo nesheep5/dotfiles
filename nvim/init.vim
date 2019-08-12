@@ -1,9 +1,23 @@
 " ===========================================================================
+"  init setting
+" ===========================================================================
+augroup initvim
+  autocmd!
+  autocmd BufWritePost $MYVIMRC  source $MYVIMRC | call InitVimrc()
+augroup END
+
+function! InitVimrc()
+  call LightlineReload()
+endfunction
+
+" ===========================================================================
 "  Common setting
 " ===========================================================================
 set noswapfile
 set clipboard+=unnamed
 set tags=.tags
+set spell
+set spelllang=en,cjk
 
 " ===========================================================================
 "  Common Visual setting
@@ -15,14 +29,12 @@ set scrolloff=5
 set background=dark
 colorscheme solarized8
 
-
 " ===========================================================================
 "  Key Map
 " ===========================================================================
 let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
-nnoremap <F6> :source $MYVIMRC<CR> :echo 'reload init.vim'<CR> 
 nnoremap <F7> :PlugInstall<CR> 
 nnoremap <F8> :PlugUpdate<CR> 
 
@@ -30,6 +42,8 @@ nnoremap <F8> :PlugUpdate<CR>
 "  Plugins
 " ===========================================================================
 call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'
+
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -59,6 +73,30 @@ call plug#end()
 " ===========================================================================
 "  Plugin setting
 " ===========================================================================
+
+" ---------------------------------------------------------------------------
+"  for lightline.vim
+" ---------------------------------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'selenized_dark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+command! LightlineReload call LightlineReload()
+
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+endfunction 
+
+
 
 " ---------------------------------------------------------------------------
 "  for Vim-go
