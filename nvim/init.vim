@@ -14,6 +14,7 @@ endfunction
 "  Common setting
 " ===========================================================================
 set noswapfile
+set cursorline
 set clipboard+=unnamed
 set tags=.tags
 set spell
@@ -55,6 +56,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+" for Ruby
+Plug 'tpope/vim-rails'
 
 " for Go
 Plug 'fatih/vim-go'
