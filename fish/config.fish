@@ -9,6 +9,7 @@ set -x PATH  /usr/local/opt/grep/libexec/gnubin $PATH
 alias vim="nvim"
 balias vc 'vim ~/.config/nvim/init.vim'
 balias fc 'vim ~/.config/fish/config.fish'
+balias fc_local 'vim ~/.config/fish/config_local.fish'
 balias gl 'ghq look (ghq list | fzf)'
 balias rm 'rmtrash'
 balias gc 'git checkout'
@@ -18,8 +19,9 @@ balias gc 'git checkout'
 set -x GOPATH $HOME/git
 set -x PATH $PATH $GOPATH/bin
 set -x GOENV_DISABLE_GOPATH 1 # goenvのvar毎にGOPATH管理する機能を無効化
-set -x 	GO111MODULE on
 
+# for direnv
+direnv hook fish | source
 
 # init anyenv
 status --is-interactive; and source (anyenv init -|psub)
