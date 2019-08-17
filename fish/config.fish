@@ -1,7 +1,7 @@
 
 # historyに重複コマンドを残さない
 set -x HISTCONTROL ignoreboth
-
+set -x EDITOR nvim
 # grep PATH
 set -x PATH  /usr/local/opt/grep/libexec/gnubin $PATH
 
