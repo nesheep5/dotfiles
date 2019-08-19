@@ -58,6 +58,7 @@ colorscheme solarized8
 " ===========================================================================
 let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
+nnoremap <F3> :TagbarToggle<CR>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR> 
 nnoremap <F8> :PlugUpdate<CR> 
@@ -67,6 +68,7 @@ nnoremap <F8> :PlugUpdate<CR>
 " ===========================================================================
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
+Plug 'majutsushi/tagbar'
 
 " for Git
 Plug 'airblade/vim-gitgutter'
