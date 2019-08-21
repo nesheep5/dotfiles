@@ -70,6 +70,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 
+" for PlantUML
+Plug 'aklt/plantuml-syntax'
+
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
