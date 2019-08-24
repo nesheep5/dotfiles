@@ -1,3 +1,5 @@
+set encoding=utf-8
+scriptencoding utf-8
 " ===========================================================================
 "  init setting
 " ===========================================================================
@@ -49,7 +51,12 @@ augroup END
 set number
 set scrolloff=5
 
+" visualize spaces and tabs
+set list
+set listchars=tab:>-,trail:~,extends:>,precedes:<
+
 " color setting
+syntax on
 set background=dark
 colorscheme solarized8
 
@@ -89,7 +96,7 @@ endif
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 " for Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
