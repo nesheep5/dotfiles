@@ -67,8 +67,8 @@ let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
 nnoremap <F3> :TagbarToggle<CR>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
-nnoremap <F7> :PlugInstall<CR> 
-nnoremap <F8> :PlugUpdate<CR> 
+nnoremap <F7> :PlugInstall<CR>
+nnoremap <F8> :PlugUpdate<CR>
 
 " ===========================================================================
 "  Plugins
