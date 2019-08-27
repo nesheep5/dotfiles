@@ -53,7 +53,7 @@ set scrolloff=5
 
 " visualize spaces and tabs
 set list
-set listchars=tab:>-,trail:~,extends:>,precedes:<
+set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 
 " color setting
 syntax on
