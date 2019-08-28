@@ -45,6 +45,12 @@ augroup ctags
   autocmd BufWritePost * call s:execute_ctags()
 augroup END
 
+" Opnening help in a vertical split window
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+
 " ===========================================================================
 "  Common Visual setting
 " ===========================================================================
@@ -70,13 +76,15 @@ nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR>
 nnoremap <F8> :PlugUpdate<CR>
 
+
+
 " ===========================================================================
 "  Plugins
 " ===========================================================================
 call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
-
+Plug 'mechatroner/rainbow_csv'
 " for PlantUML
 Plug 'aklt/plantuml-syntax'
 
@@ -275,9 +283,9 @@ endfunction
 " ---------------------------------------------------------------------------
 "  for fzf
 " ---------------------------------------------------------------------------
-nnoremap <C-f>f :Files<CR>
-nnoremap <C-f>h :History<CR>
-nnoremap <C-f>b :Buffers<CR>
+nnoremap ff :Files<CR>
+nnoremap fh :History<CR>
+nnoremap fb :Buffers<CR>
 
 " ---------------------------------------------------------------------------
 "  for coc.nvim
