@@ -212,8 +212,11 @@ let g:go_auto_sameids = 1
 " ---------------------------------------------------------------------------
 "  for Defx
 " ---------------------------------------------------------------------------
-nnoremap <C-e> :Defx<CR>
-nnoremap <C-f> :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap [defx] <Nop>
+nmap     d [defx]
+nnoremap [defx]e :Defx<CR>
+nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -283,10 +286,15 @@ endfunction
 " ---------------------------------------------------------------------------
 "  for fzf
 " ---------------------------------------------------------------------------
-nnoremap ff :Files<CR>
-nnoremap fh :History<CR>
-nnoremap fb :Buffers<CR>
-
+nnoremap [fzf]    <Nop>
+nmap     f        [fzf]
+"nnoremap [fzf]f :GFiles<CR>
+nnoremap [fzf]f :Files<CR>
+nnoremap [fzf]F :GFiles?<CR>
+nnoremap [fzf]b :Buffers<CR>
+nnoremap [fzf]l :BLines<CR>
+nnoremap [fzf]h :History<CR>
+nnoremap [fzf]m :Mark<CR>
 " ---------------------------------------------------------------------------
 "  for coc.nvim
 " ---------------------------------------------------------------------------
