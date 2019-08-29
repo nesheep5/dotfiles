@@ -18,8 +18,8 @@ endfunction
 set noswapfile
 set cursorline
 set clipboard+=unnamed
-set spell
-set spelllang=en,cjk
+" set spell
+" set spelllang=en,cjk
 
 " tags setting
 set tags=.tags;$HOME
@@ -45,7 +45,7 @@ augroup ctags
   autocmd BufWritePost * call s:execute_ctags()
 augroup END
 
-" Opnening help in a vertical split window
+" Opening help in a vertical split window
 augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
@@ -78,9 +78,8 @@ nnoremap <F8> :PlugUpdate<CR>
 
 "  for fzf
 nnoremap [fzf]    <Nop>
-nmap     ,f        [fzf]
+nmap     f        [fzf]
 "nnoremap [fzf]f :GFiles<CR>
-nnoremap [fzf]f :Files<CR>
 nnoremap [fzf]F :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]l :BLines<CR>
@@ -97,12 +96,15 @@ nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 " ===========================================================================
 "  Plugins
 " ===========================================================================
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
 " for PlantUML
 Plug 'aklt/plantuml-syntax'
+
+" Asynchronous Lint Engine
+Plug 'dense-analysis/ale'
 
 " for Git
 Plug 'airblade/vim-gitgutter'
@@ -168,7 +170,14 @@ function! LightlineReload()
   call lightline#update()
 endfunction 
 
+" ---------------------------------------------------------------------------
+"  for ale
+" ---------------------------------------------------------------------------
+let g:ale_fixers = {
+\   'ruby': ['rubocop'],
+\}
 
+let g:ale_fix_on_save = 1
 
 " ---------------------------------------------------------------------------
 "  for Vim-go
