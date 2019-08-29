@@ -76,6 +76,22 @@ nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR>
 nnoremap <F8> :PlugUpdate<CR>
 
+"  for fzf
+nnoremap [fzf]    <Nop>
+nmap     ,f        [fzf]
+"nnoremap [fzf]f :GFiles<CR>
+nnoremap [fzf]f :Files<CR>
+nnoremap [fzf]F :GFiles?<CR>
+nnoremap [fzf]b :Buffers<CR>
+nnoremap [fzf]l :BLines<CR>
+nnoremap [fzf]h :History<CR>
+nnoremap [fzf]m :Mark<CR>
+
+" for Defx
+nnoremap [defx] <Nop>
+nmap     ,d [defx]
+nnoremap [defx]e :Defx<CR>
+nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 
 " ===========================================================================
@@ -212,11 +228,6 @@ let g:go_auto_sameids = 1
 " ---------------------------------------------------------------------------
 "  for Defx
 " ---------------------------------------------------------------------------
-nnoremap [defx] <Nop>
-nmap     d [defx]
-nnoremap [defx]e :Defx<CR>
-nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
-
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
@@ -283,18 +294,6 @@ function! s:defx_my_settings() abort
   \ defx#do_action('change_vim_cwd')
 endfunction
 
-" ---------------------------------------------------------------------------
-"  for fzf
-" ---------------------------------------------------------------------------
-nnoremap [fzf]    <Nop>
-nmap     f        [fzf]
-"nnoremap [fzf]f :GFiles<CR>
-nnoremap [fzf]f :Files<CR>
-nnoremap [fzf]F :GFiles?<CR>
-nnoremap [fzf]b :Buffers<CR>
-nnoremap [fzf]l :BLines<CR>
-nnoremap [fzf]h :History<CR>
-nnoremap [fzf]m :Mark<CR>
 " ---------------------------------------------------------------------------
 "  for coc.nvim
 " ---------------------------------------------------------------------------
