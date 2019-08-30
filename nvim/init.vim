@@ -16,8 +16,12 @@ endfunction
 "  Common setting
 " ===========================================================================
 set noswapfile
-set cursorline
+set autowrite
 set clipboard+=unnamed
+set ignorecase
+set smartcase
+set incsearch
+set scrolloff=10
 " set spell
 " set spelllang=en,cjk
 
@@ -55,30 +59,47 @@ augroup END
 "  Common Visual setting
 " ===========================================================================
 set number
-set scrolloff=5
+set cursorline
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set cmdheight=2
 
 " visualize spaces and tabs
 set list
 set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 
-" color setting
-syntax on
+" color
+set termguicolors
 set background=dark
 colorscheme solarized8
+syntax enable
+filetype plugin indent on
 
 " ===========================================================================
 "  Key Map
 " ===========================================================================
 let mapleader = "\<Space>"
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
 inoremap <silent> jj <ESC>
+
 nnoremap <F3> :TagbarToggle<CR>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR>
 nnoremap <F8> :PlugUpdate<CR>
 
-"  for fzf
+" moving window
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" for fzf
 nnoremap [fzf]    <Nop>
 nmap     f        [fzf]
+nnoremap [fzf]f :Files<CR>
 "nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]F :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
@@ -92,7 +113,6 @@ nmap     ,d [defx]
 nnoremap [defx]e :Defx<CR>
 nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
-
 " ===========================================================================
 "  Plugins
 " ===========================================================================
@@ -100,16 +120,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
-" for PlantUML
+" syntax
+Plug 'dag/vim-fish'
 Plug 'aklt/plantuml-syntax'
-
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
-
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
+" File Exproler
 if has('nvim')
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -117,7 +136,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 " for Ruby
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
@@ -126,11 +144,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
-
 " for fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
 " for LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -182,27 +198,8 @@ let g:ale_fix_on_save = 1
 " ---------------------------------------------------------------------------
 "  for Vim-go
 " ---------------------------------------------------------------------------
-set autowrite
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
 let g:go_list_type = "quickfix"
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports" " auto import with save
 " let g:go_fmt_fail_silently = 1
 
@@ -214,25 +211,39 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
 " checking setting
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = "5s"
 
-" navigate setting
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-
 " infomation setting
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
-let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
 
+augroup vim_go
+  autocmd!
+  autocmd FileType go nmap <leader>r  <Plug>(go-run)
+  autocmd FileType go nmap <leader>t  <Plug>(go-test)
+  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+  " navigate setting
+  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+augroup END
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
 
 " ---------------------------------------------------------------------------
 "  for Defx
@@ -313,9 +324,6 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
-
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 
@@ -393,10 +401,6 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
