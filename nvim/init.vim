@@ -125,6 +125,9 @@ Plug 'dag/vim-fish'
 Plug 'aklt/plantuml-syntax'
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
+" session
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -195,6 +198,12 @@ let g:ale_fixers = {
 
 let g:ale_fix_on_save = 1
 
+" ---------------------------------------------------------------------------
+"  for vim-session
+" ---------------------------------------------------------------------------
+let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+let g:session_directory ='~/.local/share/nvim/sessions'
 " ---------------------------------------------------------------------------
 "  for Vim-go
 " ---------------------------------------------------------------------------
