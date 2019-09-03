@@ -77,6 +77,17 @@ colorscheme solarized8
 syntax enable
 filetype plugin indent on
 
+" auto highlight current word
+function! HighlightWordUnderCursor()
+    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
+        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+    else 
+        match none 
+    endif
+endfunction
+
+autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
+
 " ===========================================================================
 "  Key Map
 " ===========================================================================
@@ -109,7 +120,7 @@ nnoremap [fzf]m :Mark<CR>
 
 " for Defx
 nnoremap [defx] <Nop>
-nmap     ,d [defx]
+nmap     <C-e> [defx]
 nnoremap [defx]e :Defx<CR>
 nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 

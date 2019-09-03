@@ -7,3 +7,6 @@ tags
 
 # direnv
 .envrc
+
+# LSP
+.solargraph.yml
