@@ -96,6 +96,7 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 inoremap <silent> jj <ESC>
 
+nnoremap <F1> :OpenSession<CR>
 nnoremap <F3> :TagbarToggle<CR>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR>
@@ -134,6 +135,7 @@ Plug 'mechatroner/rainbow_csv'
 " syntax
 Plug 'dag/vim-fish'
 Plug 'aklt/plantuml-syntax'
+Plug 'posva/vim-vue'
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 " session
@@ -152,6 +154,7 @@ else
 endif
 " for Ruby
 Plug 'tpope/vim-rails'
+Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-endwise'
 " for Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -203,10 +206,10 @@ endfunction
 " ---------------------------------------------------------------------------
 "  for ale
 " ---------------------------------------------------------------------------
-let g:ale_fixers = {
-\   'ruby': ['rubocop'],
-\}
-
+" let g:ale_fixers = {
+" \   'ruby': ['rubocop'],
+" \}
+" 
 let g:ale_fix_on_save = 1
 
 " ---------------------------------------------------------------------------
@@ -265,6 +268,15 @@ function! s:build_go_files()
   endif
 endfunction
 
+" ---------------------------------------------------------------------------
+"  for Rspec.vim
+" ---------------------------------------------------------------------------
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "!bundle exec rspec --drb {spec}"
 " ---------------------------------------------------------------------------
 "  for Defx
 " ---------------------------------------------------------------------------
