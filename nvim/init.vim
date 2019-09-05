@@ -117,6 +117,7 @@ nnoremap [fzf]F :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]h :History<CR>
+nnoremap [fzf]H :History:<CR>
 nnoremap [fzf]m :Mark<CR>
 
 " for Defx
