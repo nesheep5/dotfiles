@@ -109,8 +109,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " for fzf
-nnoremap [fzf]    <Nop>
-nmap     f        [fzf]
+nnoremap [fzf]   <Nop>
+nmap     m       [fzf]
 nnoremap [fzf]f :Files<CR>
 "nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]F :GFiles?<CR>
