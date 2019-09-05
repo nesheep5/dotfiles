@@ -73,20 +73,20 @@ set listchars=tab:>\ ,trail:~,extends:>,precedes:<
 " color
 set termguicolors
 set background=dark
-colorscheme solarized8
+colorscheme solarized8_flat
 syntax enable
 filetype plugin indent on
 
 " auto highlight current word
-function! HighlightWordUnderCursor()
-    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
-        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
-    else 
-        match none 
-    endif
-endfunction
-
-autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
+" function! HighlightWordUnderCursor()
+"     if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
+"         exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+"     else 
+"         match none 
+"     endif
+" endfunction
+" 
+" autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
 
 " ===========================================================================
 "  Key Map
@@ -111,9 +111,8 @@ nnoremap <C-l> <C-w>l
 " for fzf
 nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
-nnoremap [fzf]f :Files<CR>
-"nnoremap [fzf]f :GFiles<CR>
-nnoremap [fzf]F :GFiles?<CR>
+nnoremap [fzf]f :GFiles<CR>
+nnoremap [fzf]F :Files?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]h :History<CR>
