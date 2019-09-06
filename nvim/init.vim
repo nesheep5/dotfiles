@@ -60,6 +60,7 @@ augroup END
 " ===========================================================================
 set number
 set cursorline
+set splitright
 set autoindent
 set tabstop=2
 set shiftwidth=2
