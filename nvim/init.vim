@@ -114,6 +114,7 @@ nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
 nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]F :Files?<CR>
+nnoremap [fzf]g :Rg<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]h :History<CR>
