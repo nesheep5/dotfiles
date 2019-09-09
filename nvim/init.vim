@@ -21,6 +21,7 @@ set clipboard+=unnamed
 set ignorecase
 set smartcase
 set incsearch
+set inccommand=split
 set scrolloff=10
 " set spell
 " set spelllang=en,cjk
