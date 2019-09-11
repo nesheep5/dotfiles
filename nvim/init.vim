@@ -1,7 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 " ===========================================================================
-"  init setting
+"l  init setting
 " ===========================================================================
 augroup initvim
   autocmd!
@@ -135,6 +135,7 @@ nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "  Plugins
 " ===========================================================================
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
