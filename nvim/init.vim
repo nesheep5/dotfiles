@@ -113,6 +113,7 @@ nnoremap <C-l> <C-w>l
 " for fzf
 nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
+nnoremap [fzf]c :Commands<CR>
 nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]F :Files?<CR>
 " nnoremap [fzf]g :Rg <C-r>=expand("<cword>")<CR><CR>
