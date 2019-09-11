@@ -7,13 +7,12 @@ set -x PATH  /usr/local/opt/grep/libexec/gnubin $PATH
 
 # alias ++++++++++++++++++++++++++++++++++++++++++++++++++
 alias vim="nvim"
-balias vc 'vim ~/.config/nvim/init.vim'
-balias fc 'vim ~/.config/fish/config.fish'
-balias fc_local 'vim ~/.config/fish/config_local.fish'
-balias gl 'ghq look (ghq list | fzf)'
-balias rm 'rmtrash'
-balias gc 'git checkout'
-
+alias vc 'vim ~/.config/nvim/init.vim'
+alias fc 'vim ~/.config/fish/config.fish'
+alias fc_local 'vim ~/.config/fish/config_local.fish'
+alias gl 'ghq look (ghq list | fzf)'
+alias rm 'rmtrash'
+alias gc 'git checkout'
 
 # for Go
 set -x GOPATH $HOME/git
