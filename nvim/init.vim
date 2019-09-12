@@ -135,6 +135,7 @@ nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "  Plugins
 " ===========================================================================
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'jceb/vim-orgmode'
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
