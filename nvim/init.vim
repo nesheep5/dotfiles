@@ -140,12 +140,14 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
+Plug 'ryanoasis/vim-devicons'
 " syntax
 Plug 'dag/vim-fish'
 Plug 'aklt/plantuml-syntax'
 Plug 'posva/vim-vue'
+Plug 'plasticboy/vim-markdown'
 " Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -160,6 +162,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
 " for Ruby
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
@@ -288,6 +292,11 @@ let g:rspec_command = "!bundle exec rspec --drb {spec}"
 " ---------------------------------------------------------------------------
 "  for Defx
 " ---------------------------------------------------------------------------
+call defx#custom#option('_', {
+		\ 'columns': 'indent:git:icons:filename',
+		\ 'show_ignored_files': 1,
+		\ })
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
