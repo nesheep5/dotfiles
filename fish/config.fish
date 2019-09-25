@@ -5,6 +5,8 @@ set -x EDITOR nvim
 # grep PATH
 set -x PATH  /usr/local/opt/grep/libexec/gnubin $PATH
 
+# set -x BUNDLE_GEMFILE "Gemfile.local"
+
 # alias ++++++++++++++++++++++++++++++++++++++++++++++++++
 alias vim="nvim"
 alias vc 'vim ~/.config/nvim/init.vim'
