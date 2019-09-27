@@ -369,6 +369,8 @@ endfunction
 " ---------------------------------------------------------------------------
 " for vim-lsp
 " ---------------------------------------------------------------------------
+"let g:lsp_diagnostics_enabled = 1
+"let g:lsp_diagnostics_echo_cursor = 1
 if executable('solargraph')
     " gem install solargraph
     au User lsp_setup call lsp#register_server({
@@ -379,18 +381,23 @@ if executable('solargraph')
         \ })
 endif
 
+" Remap keys for gotos
+nmap <silent> gd <Plug>(lsp-definition)
+nmap <silent> gy <Plug>(lsp-type-definition)
+nmap <silent> gi <Plug>(lsp-implementation)
+nmap <silent> gr <Plug>(lsp-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :LspHover<CR>
 " ---------------------------------------------------------------------------
 " for asyncomplete.vim
 " ---------------------------------------------------------------------------
 let g:asyncomplete_auto_popup = 1
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+" 他のプラグインと干渉しているのか、上手く設定されないので遅延読み込み
+augroup lazyload
+  autocmd!
+  autocmd BufWritePost $MYVIMRC  inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+augroup END
