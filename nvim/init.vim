@@ -78,6 +78,7 @@ set background=dark
 colorscheme solarized8_flat
 syntax enable
 filetype plugin indent on
+hi CursorLine term=bold cterm=bold guibg=Grey30
 
 " auto highlight current word
 " function! HighlightWordUnderCursor()
@@ -382,13 +383,16 @@ if executable('solargraph')
 endif
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(lsp-definition)
+"nmap <silent> gd <Plug>(lsp-definition)
+nmap <silent> gd :vsp<cr>:LspDefinition<cr>
+nmap <silent> gD <Plug>(lsp-peek-definition)
 nmap <silent> gy <Plug>(lsp-type-definition)
 nmap <silent> gi <Plug>(lsp-implementation)
 nmap <silent> gr <Plug>(lsp-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :LspHover<CR>
+
 " ---------------------------------------------------------------------------
 " for asyncomplete.vim
 " ---------------------------------------------------------------------------
