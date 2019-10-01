@@ -204,9 +204,10 @@ let g:lightline = {
       \ 'colorscheme': 'selenized_dark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
+      \             [ 'readonly', 'relativepath', 'modified', 'gitbranch', 'session' ] ]
       \ },
       \ 'component_function': {
+      \   'session': 'xolox#session#find_current_session',
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
@@ -231,8 +232,9 @@ let g:ale_fix_on_save = 1
 " ---------------------------------------------------------------------------
 "  for vim-session
 " ---------------------------------------------------------------------------
+let g:session_default_to_last = 1
 let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
+let g:session_autoload = 'yes'
 let g:session_directory ='~/.local/share/nvim/sessions'
 " ---------------------------------------------------------------------------
 "  for Vim-go
@@ -370,7 +372,7 @@ endfunction
 " ---------------------------------------------------------------------------
 " for vim-lsp
 " ---------------------------------------------------------------------------
-"let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = 1
 "let g:lsp_diagnostics_echo_cursor = 1
 if executable('solargraph')
     " gem install solargraph
