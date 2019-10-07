@@ -26,6 +26,11 @@ set scrolloff=10
 " set spell
 " set spelllang=en,cjk
 
+augroup window_size
+  autocmd!
+  autocmd WinEnter * :vertical resize 120<CR>
+augroup END
+
 " tags setting
 set tags=.tags;$HOME
 function! s:execute_ctags() abort
@@ -148,7 +153,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'posva/vim-vue'
 Plug 'plasticboy/vim-markdown'
 " Asynchronous Lint Engine
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 " session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -182,6 +187,9 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'prabirshrestha/asyncomplete-necovim.vim'
+Plug 'Shougo/neco-vim'
 call plug#end()
 
 " ===========================================================================
@@ -223,10 +231,10 @@ endfunction
 " ---------------------------------------------------------------------------
 "  for ale
 " ---------------------------------------------------------------------------
-" let g:ale_fixers = {
-" \   'ruby': ['rubocop'],
-" \}
-" 
+let g:ale_fixers = {
+\   'ruby': ['rubocop'],
+\}
+
 let g:ale_fix_on_save = 1
 
 " ---------------------------------------------------------------------------
@@ -290,11 +298,14 @@ endfunction
 "  for Rspec.vim
 " ---------------------------------------------------------------------------
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "!bundle exec rspec --drb {spec}"
+augroup rspec_vim
+  autocmd!
+  autocmd FileType ruby map <Leader>t :call RunCurrentSpecFile()<CR>
+  autocmd FileType ruby map <Leader>s :call RunNearestSpec()<CR>
+  autocmd FileType ruby map <Leader>l :call RunLastSpec()<CR>
+  autocmd FileType ruby map <Leader>a :call RunAllSpecs()<CR>
+augroup END
 " ---------------------------------------------------------------------------
 "  for Defx
 " ---------------------------------------------------------------------------
@@ -372,8 +383,7 @@ endfunction
 " ---------------------------------------------------------------------------
 " for vim-lsp
 " ---------------------------------------------------------------------------
-let g:lsp_diagnostics_enabled = 1
-"let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_enabled = 0 " use ALE
 if executable('solargraph')
     " gem install solargraph
     au User lsp_setup call lsp#register_server({
@@ -399,6 +409,8 @@ nnoremap <silent> K :LspHover<CR>
 " for asyncomplete.vim
 " ---------------------------------------------------------------------------
 let g:asyncomplete_auto_popup = 1
+
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
@@ -407,3 +419,22 @@ augroup lazyload
   autocmd!
   autocmd BufWritePost $MYVIMRC  inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
 augroup END
+
+" buffer
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+
+" vim script
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+    \ 'name': 'necovim',
+    \ 'whitelist': ['vim'],
+    \ 'completor': function('asyncomplete#sources#necovim#completor'),
+    \ }))
+
