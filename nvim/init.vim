@@ -26,10 +26,16 @@ set scrolloff=10
 " set spell
 " set spelllang=en,cjk
 
-augroup window_size
+augroup window_resize
   autocmd!
-  autocmd WinEnter * :vertical resize 120<CR>
+  autocmd WinEnter * call WinResize()
 augroup END
+
+function! WinResize()
+  if winwidth('%') < 120
+    :vertical resize 120<CR>
+  endif
+endfunction
 
 " tags setting
 set tags=.tags;$HOME
