@@ -158,6 +158,7 @@ Plug 'dag/vim-fish'
 Plug 'aklt/plantuml-syntax'
 Plug 'posva/vim-vue'
 Plug 'plasticboy/vim-markdown'
+Plug 'ekalinin/Dockerfile.vim'
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 " session
@@ -177,9 +178,11 @@ endif
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 " for Ruby
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-dispatch'
 " for Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'AndrewRadev/splitjoin.vim'
@@ -242,7 +245,13 @@ let g:ale_fixers = {
 \}
 
 let g:ale_fix_on_save = 1
-
+" ---------------------------------------------------------------------------
+"  for ultisnips
+" ---------------------------------------------------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ---------------------------------------------------------------------------
 "  for vim-session
 " ---------------------------------------------------------------------------
@@ -304,7 +313,7 @@ endfunction
 "  for Rspec.vim
 " ---------------------------------------------------------------------------
 " RSpec.vim mappings
-let g:rspec_command = "!bundle exec rspec --drb {spec}"
+let g:rspec_command = "Dispatch bundle exec rspec --drb {spec}"
 augroup rspec_vim
   autocmd!
   autocmd FileType ruby map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -351,7 +360,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> S
   \ defx#do_action('toggle_sort', 'time')
   nnoremap <silent><buffer><expr> d
-  \ defx#do_action('remove')
+  \ defx#do_action('remove_trash')
   nnoremap <silent><buffer><expr> r
   \ defx#do_action('rename')
   nnoremap <silent><buffer><expr> !
@@ -390,6 +399,18 @@ endfunction
 " for vim-lsp
 " ---------------------------------------------------------------------------
 let g:lsp_diagnostics_enabled = 0 " use ALE
+
+" for Go
+if executable('gopls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+endif
+
+" for Ruby
 if executable('solargraph')
     " gem install solargraph
     au User lsp_setup call lsp#register_server({
