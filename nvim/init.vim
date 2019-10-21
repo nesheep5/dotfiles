@@ -23,6 +23,7 @@ set smartcase
 set incsearch
 set inccommand=split
 set scrolloff=10
+set keywordprg=:help
 " set spell
 " set spelllang=en,cjk
 
@@ -181,7 +182,7 @@ Plug 'kristijanhusak/defx-icons'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'thoughtbot/vim-rspec'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 " for Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -430,22 +431,24 @@ nmap <silent> gi <Plug>(lsp-implementation)
 nmap <silent> gr <Plug>(lsp-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :LspHover<CR>
+" nnoremap <silent> K :LspHover<CR>
 
 " ---------------------------------------------------------------------------
 " for asyncomplete.vim
 " ---------------------------------------------------------------------------
 let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menu,noinsert,noselect
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
-" 他のプラグインと干渉しているのか、上手く設定されないので遅延読み込み
-augroup lazyload
-  autocmd!
-  autocmd BufWritePost $MYVIMRC  inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
-augroup END
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+" endwiseと競合していたため、遅延読み込み
+" augroup lazyload
+"   autocmd!
+"   autocmd BufWritePost $MYVIMRC  inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+" augroup END
 
 " buffer
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
