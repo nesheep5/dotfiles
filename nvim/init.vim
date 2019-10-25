@@ -222,7 +222,7 @@ let g:lightline = {
       \ 'colorscheme': 'selenized_dark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'relativepath', 'modified', 'gitbranch', 'session' ] ]
+      \             [ 'modified', 'readonly', 'relativepath', 'gitbranch', 'session' ] ]
       \ },
       \ 'component_function': {
       \   'session': 'xolox#session#find_current_session',
@@ -368,17 +368,26 @@ endfunction
 " ---------------------------------------------------------------------------
 " for vim-lsp
 " ---------------------------------------------------------------------------
-let g:lsp_diagnostics_enabled = 0 " use ALE
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 1
+let g:lsp_textprop_enabled = 1
+let g:lsp_highlight_references_enabled = 1
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " for Go
-if executable('gopls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-endif
+" if executable('gopls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'gopls',
+"         \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+"         \ 'whitelist': ['go'],
+"         \ })
+"     autocmd BufWritePre *.go LspDocumentFormatSync
+" endif
 
 " for Ruby
 if executable('solargraph')
@@ -392,8 +401,11 @@ if executable('solargraph')
 endif
 
 " Remap keys for gotos
-"nmap <silent> gd <Plug>(lsp-definition)
-nmap <silent> gd :vsp<cr>:LspDefinition<cr>
+nmap ga :LspCodeAction<cr>
+nmap gg :LspDeclaration<cr>
+nmap gt :LspTypeDefinition<cr>
+nmap <silent> gd <Plug>(lsp-definition)
+" nmap <silent> gd :vsp<cr>:LspDefinition<cr>
 nmap <silent> gD <Plug>(lsp-peek-definition)
 nmap <silent> gy <Plug>(lsp-type-definition)
 nmap <silent> gi <Plug>(lsp-implementation)
