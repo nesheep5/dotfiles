@@ -164,8 +164,9 @@ Plug 'ekalinin/Dockerfile.vim'
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 " session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-session'
+Plug 'ToruIwashita/git-switcher.vim'
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -257,10 +258,18 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ---------------------------------------------------------------------------
 "  for vim-session
 " ---------------------------------------------------------------------------
-let g:session_default_to_last = 1
-let g:session_autosave = 'yes'
-let g:session_autoload = 'yes'
-let g:session_directory ='~/.local/share/nvim/sessions'
+" let g:session_default_name = '.session'
+" let g:session_extention = '.vim'
+" let g:session_autosave = 'no'
+" let g:session_autoload = 'no'
+" ---------------------------------------------------------------------------
+"  for vim-session
+" ---------------------------------------------------------------------------
+let g:gsw_autoload_session = 'yes'
+augroup mysetting_git_switcher
+  autocmd!
+  autocmd VimLeavePre * call git_switcher#save_session()
+augroup END
 " ---------------------------------------------------------------------------
 "  for Vim-go
 " ---------------------------------------------------------------------------
