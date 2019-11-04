@@ -124,6 +124,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap aa <ESC>ggVG<CR>
 " for fzf
 nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
