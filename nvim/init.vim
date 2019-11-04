@@ -387,8 +387,8 @@ let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_highlight_references_enabled = 1
 
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " for Go
 " if executable('gopls')
@@ -412,9 +412,6 @@ if executable('solargraph')
 endif
 
 " Remap keys for gotos
-nmap ga :LspCodeAction<cr>
-nmap gg :LspDeclaration<cr>
-nmap gt :LspTypeDefinition<cr>
 nmap <silent> gd <Plug>(lsp-definition)
 " nmap <silent> gd :vsp<cr>:LspDefinition<cr>
 nmap <silent> gD <Plug>(lsp-peek-definition)
