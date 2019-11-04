@@ -16,6 +16,7 @@ endfunction
 "  Common setting
 " ===========================================================================
 set noswapfile
+set autoread
 set autowrite
 set clipboard+=unnamed
 set ignorecase
