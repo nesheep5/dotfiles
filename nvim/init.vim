@@ -125,6 +125,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap aa <ESC>ggVG<CR>
+
+tnoremap <Esc> <C-\><C-n>
 " for fzf
 nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
@@ -427,12 +429,14 @@ nmap <silent> gr <Plug>(lsp-references)
 " ---------------------------------------------------------------------------
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
-set completeopt=menu,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,preview
 
 imap <c-space> <Plug>(asyncomplete_force_refresh)
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " endwiseと競合していたため、遅延読み込み
 " augroup lazyload
 "   autocmd!
