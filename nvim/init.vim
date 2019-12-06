@@ -119,20 +119,30 @@ nnoremap <F7> :PlugInstall<CR>
 nnoremap <F8> :PlugUpdate<CR>
 
 " moving window
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+
+nnoremap sH <C-w>H
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+
+nnoremap sv <C-w>v
+nnoremap ss <C-w>s
+
+nnoremap sq :q<CR>
 
 nnoremap aa <ESC>ggVG<CR>
 
-tnoremap <Esc> <C-\><C-n>
 " for fzf
 nnoremap [fzf]   <Nop>
 nmap     m       [fzf]
 nnoremap [fzf]c :Commands<CR>
 nnoremap [fzf]f :GFiles<CR>
-nnoremap [fzf]F :Files?<CR>
+nnoremap [fzf]F :GFiles?<CR>
+nnoremap [fzf]af :Files<CR>
 " nnoremap [fzf]g :Rg <C-r>=expand("<cword>")<CR><CR>
 nnoremap [fzf]g :Rg <C-r><C-w><CR>
 nnoremap [fzf]G :Rg <CR>
