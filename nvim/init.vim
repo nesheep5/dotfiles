@@ -279,11 +279,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ---------------------------------------------------------------------------
 "  for vim-session
 " ---------------------------------------------------------------------------
-let g:gsw_autoload_session = 'yes'
-augroup mysetting_git_switcher
-  autocmd!
-  autocmd VimLeavePre * call git_switcher#save_session()
-augroup END
+" let g:gsw_autoload_session = 'yes'
+" augroup mysetting_git_switcher
+"   autocmd!
+"   autocmd VimLeavePre * call git_switcher#save_session()
+" augroup END
 " ---------------------------------------------------------------------------
 "  for Vim-go
 " ---------------------------------------------------------------------------
