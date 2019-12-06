@@ -213,6 +213,8 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'prabirshrestha/asyncomplete-buffer.vim'
 Plug 'prabirshrestha/asyncomplete-necovim.vim'
 Plug 'Shougo/neco-vim'
@@ -454,6 +456,20 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 "   autocmd!
 "   autocmd BufWritePost $MYVIMRC  inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
 " augroup END
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+\ 'name': 'omni',
+\ 'whitelist': ['*'],
+\ 'blacklist': ['c', 'cpp', 'html'],
+\ 'completor': function('asyncomplete#sources#omni#completor')
+\  }))
 
 " buffer
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
