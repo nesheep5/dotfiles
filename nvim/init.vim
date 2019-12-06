@@ -341,7 +341,8 @@ endfunction
 let g:rspec_command = "Dispatch bundle exec rspec --drb {spec}"
 augroup rspec_vim
   autocmd!
-  autocmd FileType ruby map <Leader>t :call RunCurrentSpecFile()<CR>
+  " autocmd FileType ruby map <Leader>t :call RunCurrentSpecFile()<CR>
+  autocmd FileType ruby map <Leader>t :term bundle exec rspec %<CR>
   autocmd FileType ruby map <Leader>s :call RunNearestSpec()<CR>
   autocmd FileType ruby map <Leader>l :call RunLastSpec()<CR>
   autocmd FileType ruby map <Leader>a :call RunAllSpecs()<CR>
@@ -433,7 +434,7 @@ nmap <silent> gi <Plug>(lsp-implementation)
 nmap <silent> gr <Plug>(lsp-references)
 
 " Use K to show documentation in preview window
-" nnoremap <silent> K :LspHover<CR>
+nnoremap <silent> K :LspHover<CR>
 
 " ---------------------------------------------------------------------------
 " for asyncomplete.vim
@@ -445,7 +446,7 @@ set completeopt=menuone,noinsert,noselect,preview
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <c-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup() . "\<CR>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? asyncomplete#close_popup()   : "\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " endwiseと競合していたため、遅延読み込み
