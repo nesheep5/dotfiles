@@ -28,6 +28,12 @@ set keywordprg=:help
 " set spell
 " set spelllang=en,cjk
 
+set undofile
+if !isdirectory(expand("$HOME/.config/nvim/undodir"))
+  call mkdir(expand("$HOME/.config/nvim/undodir"), "p")
+endif
+set undodir=$HOME/.config/nvim/undodir
+
 augroup window_resize
   autocmd!
   autocmd WinEnter * call WinResize()
@@ -73,7 +79,7 @@ augroup END
 "  Common Visual setting
 " ===========================================================================
 set number
-set cursorline
+" set cursorline
 set splitright
 set autoindent
 set tabstop=2
@@ -162,12 +168,16 @@ nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 "  Plugins
 " ===========================================================================
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'jceb/vim-orgmode'
+" Plug 'jceb/vim-orgmode'
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
 Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
+Plug 'mattn/emmet-vim'
+Plug 'hyshka/vim-uikit'
+Plug 'tpope/vim-surround'
 " syntax
 Plug 'sheerun/vim-polyglot'
 " Plug 'dag/vim-fish'
@@ -212,6 +222,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/asyncomplete-file.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
@@ -392,6 +403,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> cd       defx#do_action('change_vim_cwd')
 endfunction
 
+call defx#custom#column('git', 'raw_mode', 1)
 " ---------------------------------------------------------------------------
 " for vim-lsp
 " ---------------------------------------------------------------------------
@@ -403,8 +415,8 @@ let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_highlight_references_enabled = 1
 
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " for Go
 " if executable('gopls')
@@ -417,15 +429,48 @@ let g:lsp_highlight_references_enabled = 1
 " endif
 
 " for Ruby
-if executable('solargraph')
-    " gem install solargraph
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
-        \ })
-endif
+" if executable('solargraph')
+"     " gem install solargraph
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'solargraph',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+"         \ 'initialization_options': {"diagnostics": "true"},
+"         \ 'whitelist': ['ruby'],
+"         \ })
+" endif
+
+"for vue
+" if executable('vls')
+"   augroup LspVls
+"     au!
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'vue-language-server',
+"         \ 'cmd': {server_info->['vls']},
+"         \ 'whitelist': ['vue'],
+"         \ 'initialization_options': {
+"         \         'config': {
+"         \             'html': {},
+"         \              'vetur': {
+"         \                  'validation': {}
+"         \              }
+"         \         }
+"         \     }
+"         \ })
+" 
+"     " omnifunc
+"     au FileType vue setlocal omnifunc=lsp#complete
+"     " map
+"     au FileType vue nnoremap <buffer><silent> gd :<C-u>LspDefinition<CR>
+"     au FileType vue nnoremap <buffer><silent> gD :<C-u>LspReferences<CR>
+"     au FileType vue nnoremap <buffer><silent> gs :<C-u>LspDocumentSymbol<CR>
+"     au FileType vue nnoremap <buffer><silent> gS :<C-u>LspWorkspaceSymbol<CR>
+"     au FileType vue nnoremap <buffer><silent> gQ :<C-u>LspDocumentFormat<CR>
+"     au FileType vue vnoremap <buffer><silent> gQ :LspDocumentRangeFormat<CR>
+"     au FileType vue nnoremap <buffer><silent> K :<C-u>LspHover<CR>
+"     au FileType vue nnoremap <buffer><silent> <F1> :<C-u>LspImplementation<CR>
+"     au FileType vue nnoremap <buffer><silent> <F2> :<C-u>LspRename<CR>
+"   augroup end
+" endif
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(lsp-definition)
