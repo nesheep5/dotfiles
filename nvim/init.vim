@@ -316,7 +316,7 @@ let g:go_highlight_build_constraints = 1
 " checking setting
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_deadline = "10s"
 
 " infomation setting
 set updatetime=100
