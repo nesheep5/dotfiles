@@ -22,15 +22,17 @@ alias gfu 'git fetch upstream'
 
 alias ide 'tmux split-window -v -p 30; tmux split-window -h -p 66; tmux split-window -h -p 50'
 
-set -x GOPATH $HOME/git
-set -x PATH $PATH $GOPATH/bin
+# set -x GOPATH $HOME/git
+# set -x PATH $PATH $GOPATH/bin
+set -x PATH $PATH ~/go/bin
 set -x GOENV_DISABLE_GOPATH 1 # goenvのvar毎にGOPATH管理する機能を無効化
 
 # for direnv
 direnv hook fish | source
 
 # init anyenv
-status --is-interactive; and source (anyenv init -|psub)
+#status --is-interactive; and source (anyenv init -|psub)
+source /usr/local/opt/asdf/asdf.fish
 
 # mysql
 set -g fish_user_paths "/usr/local/opt/mysql@5.7/bin" $fish_user_paths
@@ -40,3 +42,6 @@ source ~/.config/fish/config_local.fish
 
 set -g fish_user_paths "/usr/local/opt/avr-gcc@8/bin" $fish_user_paths
 # set -x PATH $HOME/.local/share/vim-lsp-settings/servers $PATH
+set -g fish_user_paths "/usr/local/opt/opencv@2/bin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/postgresql@11/bin" $fish_user_paths
+
