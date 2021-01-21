@@ -1,4 +1,5 @@
 #! /bin/bash
+ln -fs ~/dotfiles/.Brewfile ~/.Brewfile
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.gitignore_global ~/.gitignore_global
 mkdir -p  ~/.config/nvim
