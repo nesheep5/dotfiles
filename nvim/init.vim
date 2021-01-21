@@ -28,6 +28,8 @@ set keywordprg=:help
 " set spell
 " set spelllang=en,cjk
 
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 set undofile
 if !isdirectory(expand("$HOME/.config/nvim/undodir"))
   call mkdir(expand("$HOME/.config/nvim/undodir"), "p")
@@ -123,6 +125,10 @@ nnoremap <F3> :TagbarToggle<CR>
 nnoremap <F5> :vsplit $MYVIMRC<CR>
 nnoremap <F7> :PlugInstall<CR>
 nnoremap <F8> :PlugUpdate<CR>
+nnoremap <F9> :PlugClean<CR>
+
+" FilePath COPY
+nnoremap fc :let @* = expand('%')<CR>
 
 " moving window
 nnoremap sh <C-w>h
@@ -150,8 +156,8 @@ nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]F :GFiles?<CR>
 nnoremap [fzf]af :Files<CR>
 " nnoremap [fzf]g :Rg <C-r>=expand("<cword>")<CR><CR>
-nnoremap [fzf]g :Rg <C-r><C-w><CR>
-nnoremap [fzf]G :Rg <CR>
+nnoremap [fzf]g :GGrep <C-r><C-w><CR>
+nnoremap [fzf]G :GGrep <CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]h :History<CR>
@@ -178,6 +184,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'mattn/emmet-vim'
 Plug 'hyshka/vim-uikit'
 Plug 'tpope/vim-surround'
+Plug 'bfredl/nvim-miniyank'
+Plug 'xavierchow/vim-swagger-preview'
 " syntax
 Plug 'sheerun/vim-polyglot'
 " Plug 'dag/vim-fish'
@@ -211,7 +219,8 @@ Plug 'thoughtbot/vim-rspec'
 " Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 " for Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mattn/vim-goimports'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -234,7 +243,11 @@ call plug#end()
 " ===========================================================================
 "  Plugin setting
 " ===========================================================================
-
+" ---------------------------------------------------------------------------
+" for miniyank
+" ---------------------------------------------------------------------------
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 " ---------------------------------------------------------------------------
 " for plantuml-syntax
 " ---------------------------------------------------------------------------
@@ -266,6 +279,15 @@ function! LightlineReload()
   call lightline#colorscheme()
   call lightline#update()
 endfunction 
+
+" ---------------------------------------------------------------------------
+"  for fzf
+" ---------------------------------------------------------------------------
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
 
 " ---------------------------------------------------------------------------
 "  for ale
@@ -301,7 +323,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "  for Vim-go
 " ---------------------------------------------------------------------------
 let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_fmt_command = "goimports" " auto import with save
 " let g:go_fmt_fail_silently = 1
 
@@ -316,7 +338,7 @@ let g:go_highlight_build_constraints = 1
 " checking setting
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_deadline = "10s"
+let g:go_metalinter_deadline = "60s"
 
 " infomation setting
 set updatetime=100
