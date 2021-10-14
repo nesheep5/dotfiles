@@ -430,8 +430,10 @@ call defx#custom#column('git', 'raw_mode', 1)
 " for vim-lsp
 " ---------------------------------------------------------------------------
 let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
+
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
