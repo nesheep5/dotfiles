@@ -34,6 +34,9 @@ direnv hook fish | source
 #status --is-interactive; and source (anyenv init -|psub)
 source /usr/local/opt/asdf/asdf.fish
 
+# init iterm2 shell integration
+source ~/.iterm2_shell_integration.(basename $SHELL)
+
 # mysql
 set -g fish_user_paths "/usr/local/opt/mysql@5.7/bin" $fish_user_paths
 
