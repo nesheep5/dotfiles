@@ -28,7 +28,7 @@ set keywordprg=:help
 " set spell
 " set spelllang=en,cjk
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/Users/mizuno-shogo/.asdf/shims/python3'
 
 set undofile
 if !isdirectory(expand("$HOME/.config/nvim/undodir"))
