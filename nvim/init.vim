@@ -18,17 +18,17 @@ endfunction
 set noswapfile
 set autoread
 set autowrite
-set clipboard+=unnamed
 set ignorecase
 set smartcase
 set incsearch
 set inccommand=split
 set scrolloff=10
 set keywordprg=:help
+set clipboard+=unnamedplus
 " set spell
 " set spelllang=en,cjk
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/home/mizuno-shogo/.asdf/shims/python3'
 
 set undofile
 if !isdirectory(expand("$HOME/.config/nvim/undodir"))
@@ -92,14 +92,6 @@ set cmdheight=2
 " visualize spaces and tabs
 set list
 set listchars=tab:>\ ,trail:~,extends:>,precedes:<
-
-" color
-set termguicolors
-set background=dark
-colorscheme solarized8_flat
-syntax enable
-filetype plugin indent on
-hi CursorLine term=bold cterm=bold guibg=Grey30
 
 " auto highlight current word
 " function! HighlightWordUnderCursor()
@@ -175,7 +167,7 @@ nnoremap [defx]f :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 " ===========================================================================
 call plug#begin('~/.local/share/nvim/plugged')
 " Plug 'jceb/vim-orgmode'
-Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-solarized8', { 'dir': '~/.config/nvim/colors/solarized8' }
 Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mechatroner/rainbow_csv'
@@ -184,8 +176,12 @@ Plug 'Yggdroot/indentLine'
 Plug 'mattn/emmet-vim'
 Plug 'hyshka/vim-uikit'
 Plug 'tpope/vim-surround'
+" yank
 Plug 'bfredl/nvim-miniyank'
-Plug 'xavierchow/vim-swagger-preview'
+Plug 'ojroques/vim-oscyank'
+
+" Plug 'xavierchow/vim-swagger-preview'
+
 " syntax
 Plug 'sheerun/vim-polyglot'
 " Plug 'dag/vim-fish'
@@ -195,10 +191,12 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'ekalinin/Dockerfile.vim'
 " Asynchronous Lint Engine
 " Plug 'dense-analysis/ale'
+
 " session
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
 " Plug 'ToruIwashita/git-switcher.vim'
+
 " for Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -225,7 +223,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ctrlpvim/ctrlp.vim'
 " for fzf
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " for LSP
 Plug 'prabirshrestha/asyncomplete.vim'
@@ -243,11 +241,26 @@ call plug#end()
 " ===========================================================================
 "  Plugin setting
 " ===========================================================================
+" color
+set termguicolors
+set background=dark
+syntax enable
+colorscheme solarized8_flat
+filetype plugin indent on
+hi CursorLine term=bold cterm=bold guibg=Grey30
+
 " ---------------------------------------------------------------------------
 " for miniyank
 " ---------------------------------------------------------------------------
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
+
+" ---------------------------------------------------------------------------
+" for oscyank
+" ---------------------------------------------------------------------------
+" https://github.com/ojroques/vim-oscyank#copying-from-a-register
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
+
 " ---------------------------------------------------------------------------
 " for plantuml-syntax
 " ---------------------------------------------------------------------------
@@ -437,8 +450,8 @@ let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_highlight_references_enabled = 1
 
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " for Go
 " if executable('gopls')
