@@ -509,17 +509,6 @@ let g:lsp_highlight_references_enabled = 1
 "   augroup end
 " endif
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(lsp-definition)
-" nmap <silent> gd :vsp<cr>:LspDefinition<cr>
-nmap <silent> gD <Plug>(lsp-peek-definition)
-nmap <silent> gy <Plug>(lsp-type-definition)
-nmap <silent> gi <Plug>(lsp-implementation)
-nmap <silent> gr <Plug>(lsp-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :LspHover<CR>
-
 " ---------------------------------------------------------------------------
 " for asyncomplete.vim
 " ---------------------------------------------------------------------------
