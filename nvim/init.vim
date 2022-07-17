@@ -1,8 +1,11 @@
 set encoding=utf-8
 scriptencoding utf-8
+
+" fxf のGfileが動かない問題 https://github.com/junegunn/fzf.vim/issues/689
+set shell=bash
 " ===========================================================================
-"l  init setting
-" ===========================================================================
+"  init setting
+" ==========================================================================
 augroup initvim
   autocmd!
   autocmd BufWritePost $MYVIMRC  source $MYVIMRC | call InitVimrc()
@@ -258,6 +261,8 @@ map P <Plug>(miniyank-autoPut)
 " ---------------------------------------------------------------------------
 " for oscyank
 " ---------------------------------------------------------------------------
+" https://github.com/ojroques/vim-oscyank#troubleshooting
+let g:oscyank_term = 'default'
 " https://github.com/ojroques/vim-oscyank#copying-from-a-register
 autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
 
@@ -452,8 +457,24 @@ let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_highlight_references_enabled = 1
 
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
+ "let g:lsp_log_verbose = 1
+ "let g:lsp_log_file = expand('~/vim-lsp.log')
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(lsp-definition)
+" nmap <silent> gd :vsp<cr>:LspDefinition<cr>
+nmap <silent> gD <Plug>(lsp-peek-definition)
+nmap <silent> gy <Plug>(lsp-type-definition)
+nmap <silent> gi <Plug>(lsp-implementation)
+nmap <silent> gr <Plug>(lsp-references)
+nmap <silent> gf <Plug>(lsp-document-format)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :LspHover<CR>
+
+
+"let g:lsp_settings_filetype_javascript = ['flow', 'eslint-language-server']
+let g:lsp_settings_filetype_javascript = ['flow']
 
 " for Go
 " if executable('gopls')
