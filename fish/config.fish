@@ -30,12 +30,8 @@ set -x GOENV_DISABLE_GOPATH 1 # goenvのvar毎にGOPATH管理する機能を無�
 # for direnv
 direnv hook fish | source
 
-# init anyenv
-#status --is-interactive; and source (anyenv init -|psub)
-source /usr/local/opt/asdf/asdf.fish
-
 # init iterm2 shell integration
-source ~/.iterm2_shell_integration.(basename $SHELL)
+# source ~/.iterm2_shell_integration.(basename $SHELL)
 
 # mysql
 set -g fish_user_paths "/usr/local/opt/mysql@5.7/bin" $fish_user_paths
@@ -53,7 +49,8 @@ set -g fish_user_paths "/usr/local/opt/postgresql@11/bin" $fish_user_paths
 set -g fish_user_paths "/home/linuxbrew/.linuxbrew/bin" $fish_user_paths
 
 # source /usr/local/opt/asdf/asdf.fish
-source /home/linuxbrew/.linuxbrew/opt/asdf/asdf.fish
+ set -e ASDF_DIR
+ source /home/linuxbrew/.linuxbrew/opt/asdf/asdf.fish
 
 # To enable agent forwarding when screen is reconnected.
 # See http://mokokko.hatenablog.com/entry/2013/03/14/133850
