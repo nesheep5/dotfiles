@@ -10,3 +10,5 @@ ln -fs ~/dotfiles/nvim/indent ~/.config/nvim/indent
 mkdir -p  ~/.config/fish
 ln -fs ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
 ln -fs ~/dotfiles/fish/fishfile ~/.config/fish/fishfile
+
+ln -fs ~/dotfiles/.tmux.conf ~/.tmux.conf
