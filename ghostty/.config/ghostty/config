@@ -1,0 +1,37 @@
+# Ghostty Configuration（全環境共通部分）
+# 環境依存の設定（font-size / window-size / keybind 等）は config.local に置く。
+# config.local は .gitignore 済み。末尾の config-file で読み込む。
+
+theme = GitLab Dark Grey
+
+# ========================================
+# シェルインテグレーション
+# ========================================
+shell-integration-features = true
+
+# ========================================
+# マウスサポート
+# ========================================
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+
+# ========================================
+# カーソル設定
+# ========================================
+cursor-style = block
+cursor-style-blink = true
+
+# ========================================
+# その他の便利な設定
+# ========================================
+confirm-close-surface = false
+clipboard-read = allow
+clipboard-write = allow
+
+# ========================================
+# 環境固有設定を読み込む
+# font-size / window-size / background / Mac固有 keybind は config.local へ。
+# ※ ghostty は config-file 指定先が存在しないと起動エラーになるため、
+#    bootstrap.sh が config.local を必ず生成する（config.local.example をコピー）。
+# ========================================
+config-file = config.local

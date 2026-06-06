@@ -1,0 +1,28 @@
+# Ghostty 環境固有設定のサンプル
+#
+# このファイルを ~/.config/ghostty/config.local にコピーして各環境で編集する。
+# config.local は .gitignore 済み。共通 config の末尾 config-file から読み込まれる。
+# ディスプレイ DPI / 画面解像度 / OS で変えたい値をここに置く。
+
+# ========================================
+# フォント設定（ディスプレイ DPI で調整）
+# ========================================
+font-size = 14
+
+# ========================================
+# ウィンドウ設定（画面解像度で調整）
+# ========================================
+window-width = 1200
+window-height = 800
+background-opacity = 0.95
+background-blur-radius = 10
+
+# ========================================
+# キーバインド（macOS の Cmd 系。Linux では super/ctrl 等に読み替え）
+# ========================================
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+keybind = cmd+shift+d=new_split:right
+keybind = cmd+d=new_split:down
+keybind = cmd+shift+left_bracket=previous_tab
+keybind = cmd+shift+right_bracket=next_tab
