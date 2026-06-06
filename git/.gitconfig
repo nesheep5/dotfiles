@@ -1,0 +1,26 @@
+[user]
+	name = shogo mizuno
+	email = ne.sheep.5mouths@gmail.com
+[init]
+	defaultBranch = main
+[core]
+	pager = delta
+	excludesfile = ~/.gitignore_global
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true   # n / N で diff セクション間を移動
+	dark = true       # ダークテーマ前提（light = true で明色）
+	line-numbers = true
+[merge]
+	conflictStyle = zdiff3
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+
+# 環境固有設定を末尾で読み込む（後勝ち。環境側が共通を上書きできる）
+# 1Password 署名パス / signingkey / hooksPath など環境依存は ~/.gitconfig.local へ。
+# ファイルが無くてもエラーにならないよう if exists で囲む。
+[include]
+	path = ~/.gitconfig.local

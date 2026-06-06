@@ -1,0 +1,19 @@
+# git 環境固有設定のサンプル
+#
+# このファイルを ~/.gitconfig.local にコピーして各環境で編集する。
+# .gitconfig.local は .gitignore 済み。共通 .gitconfig の末尾 [include] から読み込まれる。
+# 1Password 署名パス / signingkey / hooksPath など環境依存・公開したくない値をここに置く。
+#
+# 仕事用マシンでは [user] email を社用アドレスに上書きすることも可能（後勝ち）。
+
+# --- SSH 署名（macOS + 1Password の例） ---
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[user]
+	# この環境の SSH 公開鍵（1Password 等で管理）
+	signingkey = ssh-ed25519 AAAA...
+
+# --- git hooks（環境ごとに配置場所が異なるため絶対パス） ---
+[core]
+	hooksPath = /Users/<you>/.git-hooks
