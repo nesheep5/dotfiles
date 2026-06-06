@@ -1,0 +1,15 @@
+# fish 環境固有設定のサンプル
+#
+# このファイルを ~/.config/fish/config.local.fish にコピーして各環境で編集する。
+# config.local.fish は .gitignore 済みで、公開リポジトリには含まれない。
+# 仕事固有/環境依存の設定（社内ツール alias、proxy、PATH 等）をここに置く。
+#
+# 例:
+# alias work-deploy '社内デプロイコマンド'
+# set -gx HTTP_PROXY http://proxy.example.com:8080
+# fish_add_path /opt/company-tools/bin
+#
+# 対話シェル時のみ効かせたい設定は以下のように囲む:
+# if status is-interactive
+#   alias foo 'bar'
+# end
