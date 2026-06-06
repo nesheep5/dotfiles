@@ -6,11 +6,15 @@ theme = TokyoNight
 
 # ========================================
 # フォント設定
-# ※ 全環境共通。各環境に Hack Nerd Font の導入が必要
-#    （未導入環境では ghostty のフォールバックフォントで表示される）
-#    font-size は環境依存のため config.local 側に置く
+# ※ 全環境共通。各環境に Moralerspace Neon の導入が必要
+#    （brew install --cask font-moralerspace。未導入環境では ghostty の
+#    フォールバックフォントで表示される）
+#    Moralerspace Neon は Monaspace(英数) + IBM Plex Sans JP(日本語) を合成した
+#    等幅フォントで、Nerd Font グリフ(パワーライン記号等)を内蔵する。
+#    英数・日本語・アイコンを 1 本でまかなえる。
+#    font-size は環境依存のため config.local 側に置く。
 # ========================================
-font-family = Hack Nerd Font Mono
+font-family = Moralerspace Neon
 
 # ========================================
 # ウィンドウの余白
