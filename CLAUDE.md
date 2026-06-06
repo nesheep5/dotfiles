@@ -41,11 +41,14 @@ Makefile           check / stow / restow / unstow / bootstrap
 | `ghostty/.config/ghostty/config.local`（リポジトリ側） | font-size / window-size / Mac固有 keybind |
 | `~/.gitconfig.local` | 1Password 署名パス / signingkey / hooksPath（環境依存） |
 
-> ghostty の `config.local` だけは置き場所が特殊。ghostty の `config-file` は
-> config 自身（symlink 実体＝リポジトリ側）からの相対解決のため、`config.local` は
-> **リポジトリ側ディレクトリ** `ghostty/.config/ghostty/config.local` に実体で置く
-> （`.gitignore` 済みなのでコミットされない）。`config-file = ?config.local` の `?` で
-> 不在時もエラーにならない。
+> ghostty の `config.local` だけは扱いが特殊で **実体＋symlink の2段構え**。
+> `config-file = ?config.local` の相対パスは「メイン config ファイルの置き場所」
+> （＝ `~/.config/ghostty/`。**symlink は辿らない**）を基準に解決される。よって:
+> 1. 編集対象の実体は **リポジトリ側** `ghostty/.config/ghostty/config.local` に置く
+>    （`.gitignore` 済みでコミットされない）。
+> 2. `~/.config/ghostty/config.local` からその実体へ **symlink** を張る
+>    （bootstrap.sh が生成）。これが無いと `?` により黙ってスキップされ、config.local
+>    の設定（opacity / blur / Mac固有 keybind 等）が一切効かないので注意。
 
 公開して良いのは「全環境で同一」かつ「秘密でない」設定のみ。
 リポジトリには各 `*.example` をサンプルとして同梱している。
@@ -77,7 +80,8 @@ Makefile           check / stow / restow / unstow / bootstrap
   （`.gitignore` 済）。fish パッケージ配下にはファイルのみ置く（サブディレクトリを置くと
   Stow が `~/.config/fish` ごと symlink 化する folding が起きるため）。
 - ghostty の `config.local` は `ghostty/.stow-local-ignore` で stow 対象外にしている
-  （リポジトリ側実体を ghostty が相対解決で読むため、`~` への symlink は不要）。
+  （リポジトリ側に実体を置くため。stow に任せず `~/.config/ghostty/config.local` への
+  symlink は bootstrap.sh が `link_if_absent` で別途張る。上の「公開 NG」節を参照）。
 
 ## fish プラグイン
 

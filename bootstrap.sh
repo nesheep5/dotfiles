@@ -19,6 +19,8 @@ log() { printf '\033[1;34m==>\033[0m %s\n' "$1"; }
 
 # 不在時のみ *.example から *.local を生成
 copy_if_absent() { [ -f "$2" ] || { mkdir -p "$(dirname "$2")"; cp "$1" "$2"; log "生成: $2"; }; }
+# $1 のリンク先を指す symlink を $2 に作る（既存の symlink/ファイルが無い時のみ）
+link_if_absent() { [ -e "$2" ] || [ -L "$2" ] || { mkdir -p "$(dirname "$2")"; ln -s "$1" "$2"; log "symlink: $2 -> $1"; }; }
 
 # --- (a) Homebrew ---
 if [ "$OS" = "Darwin" ]; then
@@ -53,9 +55,15 @@ copy_if_absent "$DOTFILES_DIR/fish/.config/fish/config.local.fish.example" "$HOM
 copy_if_absent "$DOTFILES_DIR/tmux/.config/tmux/tmux.local.conf.example"   "$HOME/.config/tmux/tmux.local.conf"
 copy_if_absent "$DOTFILES_DIR/git/.gitconfig.local.example"                "$HOME/.gitconfig.local"
 if [ "$OS" = "Darwin" ]; then
-  # ghostty の config-file は config 自身（symlink 実体＝リポジトリ側）からの相対解決。
-  # そのため config.local はリポジトリ側ディレクトリに置く（.gitignore 済み）。
-  copy_if_absent "$DOTFILES_DIR/ghostty/.config/ghostty/config.local.example" "$DOTFILES_DIR/ghostty/.config/ghostty/config.local"
+  # ghostty の config-file = ?config.local は「メイン config ファイルの置き場所」
+  # （= ~/.config/ghostty/。symlink は辿らない）を基準に相対解決される。
+  # そのため次の2段構えにする:
+  #   1. 実体（編集対象）はリポジトリ側に置く（.gitignore 済みでコミットされない）
+  #   2. ~/.config/ghostty/config.local からその実体へ symlink を張り、ghostty に
+  #      読み込ませる（不在だと ? 指定により黙ってスキップされ設定が効かない）
+  GHOSTTY_LOCAL="$DOTFILES_DIR/ghostty/.config/ghostty/config.local"
+  copy_if_absent "$DOTFILES_DIR/ghostty/.config/ghostty/config.local.example" "$GHOSTTY_LOCAL"
+  link_if_absent "$GHOSTTY_LOCAL" "$HOME/.config/ghostty/config.local"
 fi
 
 # --- (e) nvim 別リポジトリ ---
