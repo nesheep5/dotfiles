@@ -2,7 +2,7 @@
 # 環境依存の設定（font-size / window-size / keybind 等）は config.local に置く。
 # config.local は .gitignore 済み。末尾の config-file で読み込む。
 
-theme = TokyoNight Storm
+theme = TokyoNight
 
 # ========================================
 # フォント設定
@@ -11,6 +11,11 @@ theme = TokyoNight Storm
 #    font-size は環境依存のため config.local 側に置く
 # ========================================
 font-family = Hack Nerd Font Mono
+
+# ========================================
+# 背景の透明度（少しだけ透明に）
+# ========================================
+background-opacity = 0.97
 
 # ========================================
 # シェルインテグレーション
