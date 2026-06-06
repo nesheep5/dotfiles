@@ -13,9 +13,18 @@ theme = TokyoNight
 font-family = Hack Nerd Font Mono
 
 # ========================================
-# 背景の透明度（少しだけ透明に）
+# ウィンドウの余白
+# ※ 文字が端に密着しないように内側へ余白を設ける。balance で四辺を均等化。
+#    背景の透明度・blur は環境依存のため config.local 側に置く。
 # ========================================
-background-opacity = 0.97
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+
+# ========================================
+# split（フォーカスしていないペインを暗くする）
+# ========================================
+unfocused-split-opacity = 0.7
 
 # ========================================
 # シェルインテグレーション
@@ -27,6 +36,14 @@ shell-integration-features = true
 # ========================================
 mouse-hide-while-typing = true
 copy-on-select = clipboard
+
+# ========================================
+# フォントのリガチャ（合字）を無効化
+# ※ == や -> 等の合字を出さず、素のグリフで表示する。
+# ========================================
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 # ========================================
 # カーソル設定

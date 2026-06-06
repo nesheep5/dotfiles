@@ -18,6 +18,15 @@ background-opacity = 0.95
 background-blur-radius = 10
 
 # ========================================
+# macOS 固有設定
+# titlebar-style=tabs: タイトルバーにタブを統合
+# option-as-alt=true : Option を Alt として扱い、シェル/Neovim の Alt 系
+#                      キーバインドを有効にする
+# ========================================
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+
+# ========================================
 # キーバインド（macOS の Cmd 系。Linux では super/ctrl 等に読み替え）
 # ========================================
 keybind = cmd+t=new_tab
