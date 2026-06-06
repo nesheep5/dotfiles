@@ -15,7 +15,7 @@
 
 ```
 fish/    .config/fish/{config.fish, fish_plugins}   ← fisher生成物は追跡しない
-tmux/    .config/tmux/tmux.conf
+tmux/    .config/tmux/tmux.conf                       ← tpm の plugins/ は追跡しない
 ghostty/ .config/ghostty/config                      ← Mac限定
 starship/.config/starship.toml
 mise/    .config/mise/config.toml
@@ -89,10 +89,22 @@ Makefile           check / stow / restow / unstow / bootstrap
 - 追加は `fisher install <repo>` 実行後、`fish_plugins` の差分のみコミットする。
   functions/ completions/ は生成物なのでコミットしない。
 
+## tmux プラグイン（tpm 管理）
+
+- プラグインの**真実の源は `tmux.conf` の `set -g @plugin '...'` 宣言**。
+- tpm 本体・各プラグインは **`~/.config/tmux/plugins/`（実体）** に clone される。
+  リポジトリ側に置くと Stow folding（`~/.config/tmux` ごと symlink 化）が起きるため、
+  fish と同様に実体ディレクトリへ直接置き、`plugins/` は `.gitignore` 済み（コミットしない）。
+- tmux.conf 末尾の tpm 初期化は `if-shell` で tpm の存在時のみ `run` する
+  （未導入環境でも起動エラーにならないようにするため）。
+- 追加は `tmux.conf` に `@plugin` 行を足し、prefix(`C-q`) + `I` でインストール
+  （または bootstrap.sh が `tpm/bin/install_plugins` で非対話インストール）。`@plugin` 行のみコミットする。
+- 現在の導入プラグイン: `tmux-cpu`（status-right の `#{cpu_percentage}` / `#{ram_percentage}` を提供）。
+
 ## 新環境セットアップ
 
-`./bootstrap.sh` を参照（OS判定 → brew → brew bundle → stow → nvim clone →
-fisher → chsh → *.local テンプレ生成 → pre-commit install）。
+`./bootstrap.sh` を参照（OS判定 → brew → brew bundle → stow → tpm clone+install →
+nvim clone → fisher → chsh → *.local テンプレ生成 → pre-commit install）。
 
 ## コミット規約（親 ~/ghq/CLAUDE.md より）
 

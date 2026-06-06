@@ -72,14 +72,29 @@ if [ ! -d "$HOME/.config/nvim" ]; then
   git clone "$NVIM_REPO" "$HOME/.config/nvim"
 fi
 
-# --- (f) fisher プラグイン復元（fish_plugins 宣言から同期） ---
+# --- (f) tmux プラグイン（tpm）導入＆インストール ---
+# tpm は ~/.config/tmux/plugins/ に clone する（リポジトリ側に置くと stow folding が
+# 起きて ~/.config/tmux ごと symlink 化されるため、実体ディレクトリに直接置く）。
+# plugins/ は .gitignore 済み。真実の源は tmux.conf の @plugin 宣言。
+TPM_DIR="$HOME/.config/tmux/plugins/tpm"
+if [ ! -d "$TPM_DIR" ]; then
+  log "tpm（tmux plugin manager）を clone"
+  git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+fi
+# tmux.conf の @plugin 宣言に基づきプラグインを非対話でインストール（冪等）
+if command -v tmux >/dev/null 2>&1 && [ -x "$TPM_DIR/bin/install_plugins" ]; then
+  log "tmux プラグインをインストール"
+  "$TPM_DIR/bin/install_plugins"
+fi
+
+# --- (g) fisher プラグイン復元（fish_plugins 宣言から同期） ---
 if command -v fish >/dev/null 2>&1; then
   log "fisher プラグインを復元"
   fish -c 'type -q fisher; or begin; curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; and fisher install jorgebucaran/fisher; end'
   fish -c 'fisher update'
 fi
 
-# --- (g) fish をログインシェル化 ---
+# --- (h) fish をログインシェル化 ---
 FISH_BIN="$(command -v fish || true)"
 if [ -n "$FISH_BIN" ]; then
   if ! grep -qx "$FISH_BIN" /etc/shells 2>/dev/null; then
@@ -92,7 +107,7 @@ if [ -n "$FISH_BIN" ]; then
   fi
 fi
 
-# --- (h) pre-commit をこのリポジトリに有効化 ---
+# --- (i) pre-commit をこのリポジトリに有効化 ---
 if command -v pre-commit >/dev/null 2>&1; then
   log "pre-commit フックを有効化"
   (cd "$DOTFILES_DIR" && pre-commit install)
