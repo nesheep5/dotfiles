@@ -1,3 +1,35 @@
-# igunore local file and dir.
-*localL*
-**/local/
+# =============================================================================
+# 環境固有・秘密情報の分離ファイル（各環境ローカル管理・絶対にコミットしない）
+# 仕事固有/業務関連/社内設定/APIキー等はすべて *.local 側に置く
+# *.example はサンプルとして追跡する（下記パターンにマッチしない）
+# =============================================================================
+*.local
+*.local.fish
+*.local.conf
+*.local.toml
+config.local
+.gitconfig.local
+
+# =============================================================================
+# fish: fisher / fish本体が自動生成するもの（fish_plugins からの復元対象）
+# 追跡するのは config.fish と fish_plugins のみ
+# =============================================================================
+fish/.config/fish/functions/
+fish/.config/fish/completions/
+fish/.config/fish/conf.d/
+fish/.config/fish/fish_variables
+fish/.config/fish/themes/
+fish/.config/fish/fishd.*
+
+# 将来 conf.d に自作スクリプトを置く場合は、以下のように個別に追跡する:
+#   !fish/.config/fish/conf.d/
+#   fish/.config/fish/conf.d/*
+#   !fish/.config/fish/conf.d/my_custom.fish
+
+# =============================================================================
+# OS / エディタ / その他
+# =============================================================================
+.DS_Store
+*.swp
+*.swo
+*~

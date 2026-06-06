@@ -1,0 +1,85 @@
+# CLAUDE.md — dotfiles（GNU Stow 管理）
+
+このリポジトリは Claude Code 経由での編集・管理を主な運用方法として設計されている。
+作業時は以下を必ず守ること。
+
+## このリポジトリの役割
+
+全環境共通の dotfiles を **GNU Stow + symlink** で管理する。
+個人 Mac / 仕事 Mac / 仕事 EC2(Ubuntu) で共有する。**公開リポジトリ**である。
+
+- 管理ツール本体は最小限（Stow のみ）。バージョン固定や CI は意図的に持たない（シンプル優先）
+- nvim 設定は別リポジトリ（github.com/nesheep5/nvim）。ここには含めず bootstrap で clone する
+
+## ディレクトリ地図
+
+```
+fish/    .config/fish/{config.fish, fish_plugins}   ← fisher生成物は追跡しない
+tmux/    .config/tmux/tmux.conf
+ghostty/ .config/ghostty/config                      ← Mac限定
+starship/.config/starship.toml
+mise/    .config/mise/config.toml
+git/     {.gitconfig, .gitignore_global} + .config/git/ignore
+Brewfile           全環境必須コアのみ（手キュレーション。全dumpしない）
+bootstrap.sh       新環境セットアップ（冪等・Mac/Ubuntu両対応）
+Makefile           check / stow / restow / unstow / bootstrap
+```
+
+各パッケージ内は `<pkg>/.config/<tool>/...` という Stow 流の構造で、`stow` 実行時に
+`~`（ホーム）へミラーされる。
+
+## 公開 NG（絶対にコミットしないもの）
+
+**秘密情報・業務関連・社内固有設定は一切このリポジトリに入れない。** これは会社ポリシー。
+
+環境固有・秘密は次のローカルファイル（`.gitignore` 済・各環境で手動作成）に置く:
+
+| ファイル | 置くもの |
+|---|---|
+| `~/.config/fish/config.local.fish` | 仕事固有 alias / proxy / 社内ツール PATH |
+| `~/.config/tmux/tmux.local.conf` | 環境固有の tmux 設定 |
+| `~/.config/ghostty/config.local` | font-size / window-size / Mac固有 keybind |
+| `~/.gitconfig.local` | 1Password 署名パス / signingkey / hooksPath（環境依存） |
+
+公開して良いのは「全環境で同一」かつ「秘密でない」設定のみ。
+リポジトリには各 `*.example` をサンプルとして同梱している。
+
+## 編集動線（重要）
+
+- `~/.config/<tool>/...` は**このリポジトリ内ファイルへの symlink**。
+  symlink 経由で Edit すればリポジトリ実体が変わる（**apply ステップは不要**）。
+- git コミットは必ずこのリポジトリ（`~/ghq/github.com/nesheep5/dotfiles`）で行う。
+- 編集後は必ず `make check` を実行してからコミットする。
+
+## 検証手順
+
+1. `make check`（fish 構文 / stow dry-run / gitleaks / git status）
+2. fish 変更時: 新しいシェルを開いて alias・プロンプトを確認
+3. tmux 変更時: `tmux source-file ~/.config/tmux/tmux.conf`
+4. git 変更時: `git config --show-origin <key>` で値の出所を確認
+
+## Stow 運用
+
+- パッケージ追加: ルートで `stow -t ~ <pkg>`
+- **`stow --adopt` は危険**: 既存実体をリポジトリ側に取り込み、リポジトリ内容を実体で
+  上書きする。使う前に必ず `git status` がクリーン＆コミット済みであることを確認すること。
+- 自動生成物（fish の functions/ completions/ conf.d/ fish_variables）はコミットしない
+  （`.gitignore` 済）。fish パッケージ配下にはファイルのみ置く（サブディレクトリを置くと
+  Stow が `~/.config/fish` ごと symlink 化する folding が起きるため）。
+
+## fish プラグイン
+
+- プラグインの**真実の源は `fish_plugins`**（fisher 宣言）。
+- 追加は `fisher install <repo>` 実行後、`fish_plugins` の差分のみコミットする。
+  functions/ completions/ は生成物なのでコミットしない。
+
+## 新環境セットアップ
+
+`./bootstrap.sh` を参照（OS判定 → brew → brew bundle → stow → nvim clone →
+fisher → chsh → *.local テンプレ生成 → pre-commit install）。
+
+## コミット規約（親 ~/ghq/CLAUDE.md より）
+
+- コミットメッセージは**日本語**で簡潔に（1行目で要約、1コミット1目的）
+- 機密ファイルを絶対にコミットしない
+- force push は `--force-with-lease` のみ（`--force` / `-f` は禁止）
