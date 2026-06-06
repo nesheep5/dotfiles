@@ -66,12 +66,18 @@ Makefile           check / stow / restow / unstow / bootstrap
 
 ## Stow 運用
 
-- パッケージ追加: ルートで `stow -t ~ <pkg>`
+- **target（リンク先＝$HOME）は `.stowrc` で設定済み**。ghq 管理でリポジトリがホームから
+  深い階層にあるため、`.stowrc` が無いと stow は親（`~/ghq/github.com/nesheep5/`）へ
+  誤ってリンクする。`.stowrc` がこれを防ぐ。
+- パッケージ追加: リポジトリルートで `stow <pkg>`（`-t ~` は `.stowrc` があるので不要）。
+  日常運用は `make stow` / `make restow` / `make unstow` を使う。
 - **`stow --adopt` は危険**: 既存実体をリポジトリ側に取り込み、リポジトリ内容を実体で
   上書きする。使う前に必ず `git status` がクリーン＆コミット済みであることを確認すること。
 - 自動生成物（fish の functions/ completions/ conf.d/ fish_variables）はコミットしない
   （`.gitignore` 済）。fish パッケージ配下にはファイルのみ置く（サブディレクトリを置くと
   Stow が `~/.config/fish` ごと symlink 化する folding が起きるため）。
+- ghostty の `config.local` は `ghostty/.stow-local-ignore` で stow 対象外にしている
+  （リポジトリ側実体を ghostty が相対解決で読むため、`~` への symlink は不要）。
 
 ## fish プラグイン
 

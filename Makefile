@@ -11,8 +11,9 @@
 #     例: make stow PKGS="fish tmux starship mise git"
 # =============================================================================
 
+# target（リンク先＝$HOME）は .stowrc で設定済みのため -t は不要
 PKGS ?= fish tmux ghostty starship mise git
-STOW := stow -t $(HOME)
+STOW := stow
 
 .PHONY: check stow restow unstow bootstrap
 

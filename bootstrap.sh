@@ -43,6 +43,7 @@ log "stow で symlink を配置"
 PKGS="fish tmux starship mise git"
 [ "$OS" = "Darwin" ] && PKGS="$PKGS ghostty"
 cd "$DOTFILES_DIR"
+# target は .stowrc でも $HOME に設定済みだが、新環境での確実性のため明示する
 # shellcheck disable=SC2086
 stow -t "$HOME" --restow $PKGS
 
