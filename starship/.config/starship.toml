@@ -1,5 +1,31 @@
+# ==== TokyoNight Night（ghostty/tmux と色を揃える） ====
+# 注意: トップレベルキー（palette / format）は最初のテーブルヘッダより前に置くこと。
+palette = "tokyonight"
+
+# レイアウト（2行: 情報行 → 改行 → 入力行 ❯）。
+# $all はデフォルト順で全モジュールを出すので重複なし。最後に改行+character。
+format = "$all$line_break$character"
+
+[palettes.tokyonight]
+blue    = "#7aa2f7"
+cyan    = "#7dcfff"
+green   = "#9ece6a"
+magenta = "#bb9af7"
+orange  = "#ff9e64"
+red     = "#f7768e"
+yellow  = "#e0af68"
+fg      = "#c0caf5"
+comment = "#565f89"
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[cmd_duration]
+style = "yellow"
+
 [aws]
-symbol = "  "
+symbol ="  "
 
 [buf]
 symbol = " "
@@ -18,6 +44,15 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
+style = "blue"
+# fish 風パス: 末尾1階層だけフル表示し、それ以前の中間ディレクトリを頭文字1文字に
+# 省略する（例 ~/ghq/github.com/nesheep5/dotfiles → ~/g/g/n/dotfiles）。
+# truncation_length=1 で「末尾1階層を残し他は切り捨て対象」とし、
+# fish_style_pwd_dir_length=1 で切り捨て対象を隠さず頭文字1文字で表示する。
+truncation_length = 1
+truncate_to_repo = false
+truncation_symbol = ""
+fish_style_pwd_dir_length = 1
 
 [docker_context]
 symbol = " "
@@ -34,8 +69,12 @@ symbol = " "
 [fossil_branch]
 symbol = " "
 
+[git_status]
+style = "red"
+
 [git_branch]
-symbol = " "
+style = "magenta"
+symbol =" "
 
 [git_commit]
 tag_symbol = '  '
