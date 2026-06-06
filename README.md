@@ -39,7 +39,7 @@ cd ~/ghq/github.com/nesheep5/dotfiles
 
 - `~/.config/fish/config.local.fish`
 - `~/.config/tmux/tmux.local.conf`
-- `~/.config/ghostty/config.local`
+- `ghostty/.config/ghostty/config.local`（リポジトリ側に置く。ghostty の相対解決仕様による）
 - `~/.gitconfig.local`
 
 各 `*.example` をひな形として同梱している。

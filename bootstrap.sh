@@ -52,7 +52,9 @@ copy_if_absent "$DOTFILES_DIR/fish/.config/fish/config.local.fish.example" "$HOM
 copy_if_absent "$DOTFILES_DIR/tmux/.config/tmux/tmux.local.conf.example"   "$HOME/.config/tmux/tmux.local.conf"
 copy_if_absent "$DOTFILES_DIR/git/.gitconfig.local.example"                "$HOME/.gitconfig.local"
 if [ "$OS" = "Darwin" ]; then
-  copy_if_absent "$DOTFILES_DIR/ghostty/.config/ghostty/config.local.example" "$HOME/.config/ghostty/config.local"
+  # ghostty の config-file は config 自身（symlink 実体＝リポジトリ側）からの相対解決。
+  # そのため config.local はリポジトリ側ディレクトリに置く（.gitignore 済み）。
+  copy_if_absent "$DOTFILES_DIR/ghostty/.config/ghostty/config.local.example" "$DOTFILES_DIR/ghostty/.config/ghostty/config.local"
 fi
 
 # --- (e) nvim 別リポジトリ ---

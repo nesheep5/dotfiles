@@ -38,8 +38,14 @@ Makefile           check / stow / restow / unstow / bootstrap
 |---|---|
 | `~/.config/fish/config.local.fish` | 仕事固有 alias / proxy / 社内ツール PATH |
 | `~/.config/tmux/tmux.local.conf` | 環境固有の tmux 設定 |
-| `~/.config/ghostty/config.local` | font-size / window-size / Mac固有 keybind |
+| `ghostty/.config/ghostty/config.local`（リポジトリ側） | font-size / window-size / Mac固有 keybind |
 | `~/.gitconfig.local` | 1Password 署名パス / signingkey / hooksPath（環境依存） |
+
+> ghostty の `config.local` だけは置き場所が特殊。ghostty の `config-file` は
+> config 自身（symlink 実体＝リポジトリ側）からの相対解決のため、`config.local` は
+> **リポジトリ側ディレクトリ** `ghostty/.config/ghostty/config.local` に実体で置く
+> （`.gitignore` 済みなのでコミットされない）。`config-file = ?config.local` の `?` で
+> 不在時もエラーにならない。
 
 公開して良いのは「全環境で同一」かつ「秘密でない」設定のみ。
 リポジトリには各 `*.example` をサンプルとして同梱している。

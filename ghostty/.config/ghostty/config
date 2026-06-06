@@ -31,7 +31,11 @@ clipboard-write = allow
 # ========================================
 # 環境固有設定を読み込む
 # font-size / window-size / background / Mac固有 keybind は config.local へ。
-# ※ ghostty は config-file 指定先が存在しないと起動エラーになるため、
-#    bootstrap.sh が config.local を必ず生成する（config.local.example をコピー）。
+#
+# ghostty の config-file は「この config ファイル自身のあるディレクトリ」基準で
+# 相対解決される（symlink を辿った実体＝リポジトリ側ディレクトリが基準）。
+# そのため config.local はリポジトリ側の ghostty/.config/ghostty/config.local に
+# 実体として置く（.gitignore 済みなのでコミットされない）。
+# 先頭の "?" で optional 化し、不在でも起動エラーにならないようにする。
 # ========================================
-config-file = config.local
+config-file = ?config.local
