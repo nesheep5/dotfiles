@@ -1,0 +1,9 @@
+# tmux 環境固有設定のサンプル
+#
+# このファイルを ~/.config/tmux/tmux.local.conf にコピーして各環境で編集する。
+# tmux.local.conf は .gitignore 済みで、公開リポジトリには含まれない。
+# 仕事固有/環境依存の設定（社内ツール連携、環境別のステータスバー等）をここに置く。
+#
+# 例:
+# set -g status-right "WORK | %Y-%m-%d %H:%M"
+# bind C-w run-shell "社内ツールのコマンド"
