@@ -15,7 +15,7 @@
 
 ```
 fish/    .config/fish/{config.fish, fish_plugins}   ← fisher生成物は追跡しない
-tmux/    .config/tmux/tmux.conf                       ← tpm の plugins/ は追跡しない
+tmux/    .config/tmux/{tmux.conf, scripts/tmux-sysstat.sh}  ← tpm の plugins/ は追跡しない
 ghostty/ .config/ghostty/config                      ← Mac限定
 starship/.config/starship.toml
 mise/    .config/mise/config.toml
@@ -99,7 +99,13 @@ Makefile           check / stow / restow / unstow / bootstrap
   （未導入環境でも起動エラーにならないようにするため）。
 - 追加は `tmux.conf` に `@plugin` 行を足し、prefix(`C-q`) + `I` でインストール
   （または bootstrap.sh が `tpm/bin/install_plugins` で非対話インストール）。`@plugin` 行のみコミットする。
-- 現在の導入プラグイン: `tmux-cpu`（status-right の `#{cpu_percentage}` / `#{ram_percentage}` を提供）。
+- 現在の導入プラグイン: なし（tpm 枠組みのみ保持。将来の拡張・`install_plugins` の流れのため残す）。
+- status-right の CPU/MEM/DISK 表示は **プラグインではなく `scripts/tmux-sysstat.sh`** が担う
+  （`#(bash ~/.config/tmux/scripts/tmux-sysstat.sh)`）。`uname` 分岐で Mac/Linux 両対応・
+  3段階色・Nerd Font アイコンの powerline 形式を出力する。tmux-cpu は Mac で DISK 非対応・
+  表示自由度が低いため廃止した。
+- `tmux/.config/tmux/scripts/` 配下のスクリプトは全ファイル追跡対象。stow で folding されても
+  全て repo 管理のため実害はない（fish の生成物の懸念とは異なる）。
 
 ## 新環境セットアップ
 
