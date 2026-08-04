@@ -42,8 +42,11 @@ brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 # --- (c) stow（ghostty は Mac のみ） ---
 log "stow で symlink を配置"
-PKGS="fish tmux starship mise git"
+PKGS="fish tmux starship mise git herdr"
 [ "$OS" = "Darwin" ] && PKGS="$PKGS ghostty"
+# herdr は ~/.config/herdr にログ・ソケット等の実体が生成されるため、
+# 先にディレクトリを作って folding（ディレクトリごと symlink 化）を防ぐ
+mkdir -p "$HOME/.config/herdr"
 cd "$DOTFILES_DIR"
 # target は .stowrc でも $HOME に設定済みだが、新環境での確実性のため明示する
 # shellcheck disable=SC2086

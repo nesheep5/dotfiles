@@ -1,0 +1,65 @@
+# herdr 設定
+# tmux (~/.config/tmux/tmux.conf) の操作感に寄せている
+
+[theme]
+# ghostty 側の配色をそのまま使う
+name = "terminal"
+
+auto_switch = false
+[theme.custom]
+# サイドバーの背景を本体よりわずかに明るくして境界を見せる
+# (TokyoNight Night の背景 #16161e に対する面色。戻すときは "reset")
+panel_bg = "#1f2335"
+# アクセントは tmux ステータスバーと同じ TokyoNight の青
+accent = "#7aa2f7"
+# 状態アイコン/状態名の色（必要なら上書き）:
+#   red=blocked / yellow=working / teal=done / green=idle / overlay0=unknown
+# done(teal) と idle(green) が紛らわしければ teal を青寄りにすると判別しやすい
+# teal = "#7dcfff"
+
+[keys]
+# tmux と同じ prefix
+prefix = "ctrl+q"
+
+# tmux の `bind f resize-pane -Z`（全画面）に合わせる
+zoom = "prefix+f"
+
+# tmux の M-1..9 ウィンドウジャンプに合わせて Alt+数字でタブ切替
+switch_tab = "alt+1..9"
+
+[ui]
+agent_panel_sort = "priority"
+
+# バックグラウンドのエージェントが完了/承認待ちになったら画面内トーストで通知
+show_agent_labels_on_pane_borders = false
+
+# 状態アイコン（state_icon）のグリフはハードコードで変更不可（src/ui/status.rs）:
+#   blocked = ● red / working = ● yellow / done = ● teal / idle = ○ green / unknown = · overlay0
+# 色だけは [theme.custom] の red/yellow/teal/green/overlay0 で差し替え可能。
+# グリフを変えられない代わりに state_text（状態名を状態色で表示）を併記して判別しやすくする
+
+# スペース行: 1行目=状態アイコン+スペース名+状態名、2行目=リポジトリ名($repo)+ブランチ+git状態
+# $repo は組み込みではなく `herdr workspace report-metadata` で注入するカスタムトークン
+[ui.sidebar.spaces]
+rows = [
+  ["state_icon", "workspace", "state_text"],
+  [{ token = "$repo", fg = "#7a82a8" }, "branch", "git_status"],
+]
+
+# エージェント行にも状態名を併記（デフォルトは [["state_icon","workspace","tab"],["agent"]]）
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "state_text", "workspace", "tab"],
+  ["agent"],
+]
+
+[ui.toast]
+delivery = "herdr"
+
+[experimental]
+# prefix モード中は IME を一時的に英数入力へ切り替える（日本語入力中でも prefix が効く）
+switch_ascii_input_source_in_prefix = true
+
+# Claude Code で IME 変換候補ウィンドウがカーソル位置に追従するようにする
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude"]

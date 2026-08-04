@@ -20,6 +20,7 @@ ghostty/ .config/ghostty/config                      ← Mac限定
 starship/.config/starship.toml
 mise/    .config/mise/config.toml
 git/     {.gitconfig, .gitignore_global} + .config/git/ignore
+herdr/   .config/herdr/config.toml                   ← ログ/ソケット/session.json は追跡しない
 Brewfile           全環境必須コアのみ（手キュレーション。全dumpしない）
 bootstrap.sh       新環境セットアップ（冪等・Mac/Ubuntu両対応）
 Makefile           check / stow / restow / unstow / bootstrap
@@ -79,6 +80,9 @@ Makefile           check / stow / restow / unstow / bootstrap
 - 自動生成物（fish の functions/ completions/ conf.d/ fish_variables）はコミットしない
   （`.gitignore` 済）。fish パッケージ配下にはファイルのみ置く（サブディレクトリを置くと
   Stow が `~/.config/fish` ごと symlink 化する folding が起きるため）。
+- herdr は `~/.config/herdr` にログ・ソケット・session.json 等の実体が生成されるため、
+  追跡対象は `config.toml` のみ。新環境では bootstrap.sh が stow 前に `mkdir -p` で
+  ディレクトリを作り、folding（`~/.config/herdr` ごと symlink 化）を防ぐ。
 - ghostty の `config.local` は `ghostty/.stow-local-ignore` で stow 対象外にしている
   （リポジトリ側に実体を置くため。stow に任せず `~/.config/ghostty/config.local` への
   symlink は bootstrap.sh が `link_if_absent` で別途張る。上の「公開 NG」節を参照）。

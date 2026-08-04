@@ -12,7 +12,7 @@
 # =============================================================================
 
 # target（リンク先＝$HOME）は .stowrc で設定済みのため -t は不要
-PKGS ?= fish tmux ghostty starship mise git
+PKGS ?= fish tmux ghostty starship mise git herdr
 STOW := stow
 
 .PHONY: check stow restow unstow bootstrap
