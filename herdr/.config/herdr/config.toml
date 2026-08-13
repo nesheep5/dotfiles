@@ -1,3 +1,4 @@
+onboarding = false
 # herdr 設定
 # tmux (~/.config/tmux/tmux.conf) の操作感に寄せている
 
@@ -50,6 +51,14 @@ rows = [
 [ui.sidebar.agents]
 rows = [
   ["state_icon", "state_text", "workspace", "tab"],
+  ["agent"],
+]
+
+# claude だけターミナルタイトル（スピナー等の装飾を除去した作業内容）を1行追加で表示
+[ui.sidebar.agents.rows_by_agent]
+claude = [
+  ["state_icon", "state_text", "workspace", "tab"],
+  ["terminal_title_stripped"],
   ["agent"],
 ]
 
